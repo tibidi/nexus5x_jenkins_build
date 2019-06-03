@@ -10,4 +10,8 @@
     <!-- Add AOSP Context Hub-->
     <project path="device/google/contexthub" name="device/google/contexthub" />
     
+    <!-- LGE Kernel/Device/Vendor -->
+    <remote name="lgedevice" fetch="http://github.com/PixelExperience-Devices"/>
+    <project path="device/lge/bullhead" name="platform_hardware_qcom_audio" revision="pie" remote="lgedevice" />
+    
 </manifest>

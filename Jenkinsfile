@@ -58,7 +58,6 @@ node('builder') {
                 }
             }
             dir(env.SOURCE_DIR) {
-                ansiColor('xterm-color') {
                 def rc = sh (returnStatus: true, script: '''#!/usr/bin/env bash
 
                 rm -rf ./out/target/product/bullhead/obj/PACKAGING/target_files_intermediates/*
@@ -109,7 +108,6 @@ node('builder') {
                 if ( rc != 0 )
                     error("Build failed..")
                 }
-            }
         }
         
         stage('Package') {

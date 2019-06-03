@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+    <-- Headphone issue with this project from lineage-->
+    <remove-project name="android_hardware_qcom_audio" />
+
+    <!-- Use Bliss Audio -->
+    <remote name="blissaudio" fetch="https://github.com/BlissRoms" />
+    <project path="hardware/qcom/audio/default" name="platform_hardware_qcom_audio" revision="p9.0" remote="blissaudio" />
+   
+    <!-- Add AOSP Context Hub-->
+    <project path="device/google/contexthub" name="device/google/contexthub" />
+    
+</manifest>

@@ -41,7 +41,7 @@ node('builder') {
         
         stage('Code syncing') {
           dir(env.SOURCE_DIR) {
-            if (env.SYNC == true ) {
+            if (env.SYNC == 'true' ) {
                 checkout poll: false, scm: [$class: 'RepoScm', currentBranch: true, destinationDir: env.SOURCE_DIR, forceSync: true, jobs: env.JOBS, manifestBranch: env.BRANCH,
                     manifestRepositoryUrl: 'https://github.com/PixelExperience/manifest', noTags: true, quiet: true,
                     localManifest: 'https://raw.githubusercontent.com/tibidi/nexus5x_manifests/master/local.xml'

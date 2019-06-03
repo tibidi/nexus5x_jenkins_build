@@ -41,7 +41,7 @@ node('builder') {
         
         stage('Code syncing') {
           dir(env.SOURCE_DIR) {
-            if (env.SYNC ) {
+            if (env.SYNC == true ) {
                 checkout poll: false, scm: [$class: 'RepoScm', currentBranch: true, destinationDir: env.SOURCE_DIR, forceSync: true, jobs: env.JOBS, manifestBranch: env.BRANCH,
                     manifestRepositoryUrl: 'https://github.com/PixelExperience/manifest', noTags: true, quiet: true,
                     localManifest: 'https://raw.githubusercontent.com/tibidi/nexus5x_manifests/master/local.xml'
@@ -97,9 +97,6 @@ node('builder') {
                 cp out/target/product/bullhead/system/etc/Changelog.txt $ARCHIVE_DIR
         
                 cd $ARCHIVE_DIR
-                mkdir diff
-                cp -f ../../diff/* diff 2>/dev/null
-                
                 touch $BUILD_TYPE.txt
 
                 ''')

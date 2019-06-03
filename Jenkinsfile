@@ -115,7 +115,7 @@ node('builder') {
                     cd $ARCHIVE_DIR
                     unzip PixelExperience_bullhead-* boot.img
                     mv boot.img boot.build.img
-                    python /ssd/android/nexus5x/py/disable_cpu_cores.py boot.build.img boot.4c.img               
+                    python /opt/misc/disable_cpu_cores.py boot.build.img boot.4c.img               
                     cp boot.4c.img boot.img
                     zip PixelExperience_bullhead-* boot.img
                     rm boot.img
@@ -128,9 +128,6 @@ node('builder') {
             echo 'Archiving ...'
             dir(env.ARCHIVE_DIR) {
                 archiveArtifacts allowEmptyArchive: true, artifacts: '**', excludes: '*target*', fingerprint: true, onlyIfSuccessful: true
-                def rc = sh (returnStatus: true, script: '''#!/usr/bin/env bash
-                       ../../ota/updateOta.sh                    
-                ''')
             }
         }
         

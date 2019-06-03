@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-    <-- Headphone issue with this project from lineage-->
+    <-- Headphone call issue with this project from lineage-->
     <remove-project name="android_hardware_qcom_audio" />
 
     <!-- Use Bliss Audio -->

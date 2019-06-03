@@ -10,11 +10,9 @@
     <!-- Add AOSP Context Hub-->
     <project path="device/google/contexthub" name="device/google/contexthub" />
     
-    <!-- LGE Kernel/Device/Vendor -->
-    <remote name="lgedevice" fetch="http://github.com/PixelExperience-Devices"/>
-    <project path="device/lge/bullhead" name="device_lge_bullhead" revision="pie" remote="lgedevice" />
-    
-    <remote name="lgevendor" fetch="http://github.com/lakgarg"/>
-    <project path="vendor/lge" name="proprietary_vendor_lge" revision="p9.0" remote="lgevendor" />
+    <!-- LGE Kernel/Device/Vendor (don't like pixel auto add)-->
+    <project name="device_lge_bullhead" path="device/lge/bullhead" remote="pixel-devices" revision="pie" />
+    <project name="francois133/flipflop" path="kernel/lge/bullhead" remote="github" revision="upstream_2" />
+    <project name="lakgarg/proprietary_vendor_lge" path="vendor/lge" remote="github" revision="p9.0" />
     
 </manifest>

@@ -14,4 +14,7 @@
     <remote name="lgedevice" fetch="http://github.com/PixelExperience-Devices"/>
     <project path="device/lge/bullhead" name="device_lge_bullhead" revision="pie" remote="lgedevice" />
     
+    <remote name="lgevendor" fetch="http://github.com/lakgarg"/>
+    <project path="vendor/lge" name="proprietary_vendor_lge" revision="p9.0" remote="lgevendor" />
+    
 </manifest>

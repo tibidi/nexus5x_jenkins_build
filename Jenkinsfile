@@ -46,7 +46,7 @@ node('builder') {
 
                 checkout poll: false, scm: [$class: 'RepoScm', currentBranch: true, destinationDir: env.SOURCE_DIR, forceSync: true, jobs: env.JOBS, manifestBranch: env.BRANCH,
                     manifestRepositoryUrl: 'https://github.com/PixelExperience/manifest', noTags: true, quiet: true,
-                    localManifest: 'https://raw.githubusercontent.com/tibidi/nexus5x_jenkins_build/master/local.xml'
+                    localManifest: 'https://raw.githubusercontent.com/tibidi/nexus5x_jenkins_build/master/local_tibidi.xml'
                 ]
             }
           }
@@ -121,8 +121,16 @@ node('builder') {
                     cp boot.4c.img boot.img
                     zip PixelExperience_bullhead-* boot.img
                     rm boot.img
+                    cd ..
                   ''')
                 }
+				if (env.SYNC == 'true' ) {
+                  def rc = sh (returnStatus: true, script: '''#!/usr/bin/env bash
+                    export BUILD_DATE=$(grep "org.pixelexperience.build_date=" $ARCHIVE_DIR/build.prop | sed "s/.*=//")                  
+                    tar cvzf kernel_$BUILD_DATE.tgz kernel/lge/bullhead
+                    tar cvzf contexthub_$BUILD_DATE.tgz device/google/contexthub
+                  ''')				
+				}                
             }
         }
         

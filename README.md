@@ -8,6 +8,7 @@ Links:
     - Compiled version here : https://drive.google.com/file/d/1kZlwfGhy3iOLkNHBsliwi2wBvY7QmN53
   - https://github.com/pawitp/nexus-5x-blod-fix (The python script to fix BLOD)
   - the local.xml contains nexus 5x specific repos
+  - the local_tibidi.xml contains my fork nexus 5x specific repos
   
 Pathes again sources:
 ```

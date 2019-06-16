@@ -18,8 +18,9 @@ node('builder') {
             echo 'Setting up environment...'
             env.ANDROID_VER='pie'
             env.DEVICE='bullhead'
-	    if ( ! env.env.WORKDIR )
+            if ( ! env.WORKDIR ) {
             	env.WORKDIR= env.WORKSPACE + '/build/'
+            }
             currentBuild.description = 'aosp_'+env.DEVICE+'-'+env.BUILD_TYPE
             env.SOURCE_DIR=env.WORKDIR + env.ANDROID_VER + '/pixel'
             env.ARCHIVE_DIR = env.SOURCE_DIR + '/archive'

@@ -63,6 +63,8 @@ node('builder') {
             }
             dir(env.SOURCE_DIR) {
                 def rc = sh (returnStatus: true, script: '''#!/usr/bin/env bash
+		
+		export TARGET_KERNEL_CONFIG=$(echo $NEXUS_MANIFEST | sed "s/.*_//" | sed "s/.xml/_defconfig/")
 
                 rm -rf ./out/target/product/bullhead/obj/PACKAGING/target_files_intermediates/*
                 rm -f ./out/target/product/bullhead/PixelExperience_bullhead-*.zip

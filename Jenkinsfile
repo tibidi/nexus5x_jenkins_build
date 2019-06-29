@@ -128,11 +128,11 @@ node('builder') {
                     cd ..
                   ''')
                 }
-				if (env.SYNC == 'true' ) {
+		if (env.SYNC == 'true' ) {
                   def rc = sh (returnStatus: true, script: '''#!/usr/bin/env bash
                     export BUILD_DATE=$(grep "org.pixelexperience.build_date=" $ARCHIVE_DIR/build.prop | sed "s/.*=//")                  
-                    tar cvzf $ARCHIVE_DIR/kernel_$BUILD_DATE.tgz kernel/lge/bullhead
-                    tar cvzf $ARCHIVE_DIR/contexthub_$BUILD_DATE.tgz device/google/contexthub
+                    tar czf $ARCHIVE_DIR/kernel_$BUILD_DATE.tgz kernel/lge/bullhead
+                    tar czf $ARCHIVE_DIR/contexthub_$BUILD_DATE.tgz device/google/contexthub
                   ''')				
 				}                
             }

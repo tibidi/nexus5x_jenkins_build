@@ -11,7 +11,8 @@
     
     <!-- LGE Kernel/Device/Vendor (don't like pixel auto add)-->
     <project name="tibidi/device_lge_bullhead" path="device/lge/bullhead" remote="github" revision="pie" />
-    <project name="francois133/flipflop" path="kernel/lge/bullhead" remote="github" revision="upstream_2" />
     <project name="tibidi/proprietary_vendor_lge" path="vendor/lge" remote="github" revision="p9.0" />
+    <!--project name="francois133/flipflop" path="kernel/lge/bullhead" remote="github" revision="upstream_2" /-->
+    <project name="tibidi/flipflop" path="kernel/lge/bullhead" remote="github" revision="upstream_2" />
     
 </manifest>

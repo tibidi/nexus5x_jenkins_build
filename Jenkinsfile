@@ -133,6 +133,9 @@ node('builder') {
                     export BUILD_DATE=$(grep "org.pixelexperience.build_date=" $ARCHIVE_DIR/build.prop | sed "s/.*=//")                  
                     tar czf $ARCHIVE_DIR/kernel_$BUILD_DATE.tgz kernel/lge/bullhead
                     tar czf $ARCHIVE_DIR/contexthub_$BUILD_DATE.tgz device/google/contexthub
+		    tar czf $ARCHIVE_DIR/device_$BUILD_DATE.tgz device/lge/bullhead
+		    tar czf $ARCHIVE_DIR/vendor_$BUILD_DATE.tgz vendor/lge
+		    tar czf $ARCHIVE_DIR/audio_$BUILD_DATE.tgz hardware/qcom/audio/default
                   ''')				
 				}                
             }
@@ -157,7 +160,10 @@ node('builder') {
                       drive upload --file boot.build.$BUILD_DATE.img --parent $folderId
                       drive upload --file PixelExperience_bullhead-*.zip --parent $folderId
                       drive upload --file kernel_$BUILD_DATE.tgz --parent $folderId  
-                      drive upload --file contexthub_$BUILD_DATE.tgz --parent $folderId                      
+                      drive upload --file contexthub_$BUILD_DATE.tgz --parent $folderId    
+                      drive upload --file device_$BUILD_DATE.tgz  --parent $folderId
+                      drive upload --file vendor_$BUILD_DATE.tgz --parent $folderId  
+                      drive upload --file audio_$BUILD_DATE.tgz --parent $folderId                      		      
                 ''')
               }
 			}            

@@ -10,6 +10,6 @@ Links:
   - https://github.com/pawitp/nexus-5x-blod-fix (The python script to fix BLOD)
   - the local.xml contains nexus 5x specific repos
   - the local_flipflop.xml contains my fork nexus 5x specific repos (flipflop kernel)
-  - the local_shadow.xml contains my fork nexus 5x specific repos (local_shadow kernel)
+  - the local_shadow.xml contains my fork nexus 5x specific repos (shadow kernel)
 
  

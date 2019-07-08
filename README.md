@@ -12,7 +12,7 @@ Links:
   - the local_flipflop.xml contains my fork nexus 5x specific repos (flipflop kernel)
   - the local_shadow.xml contains my fork nexus 5x specific repos (shadow kernel)
   
-  The Jenkins parameters:
+  The Jenkins pipeline parameters:
   ![picture](jenkins.PNG)
 
  

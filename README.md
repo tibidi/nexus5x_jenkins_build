@@ -4,7 +4,7 @@ Jenkins pipeline for building nexus pixel 5x.
 Links:
   - https://github.com/PixelExperience/manifest (PixelExperience repo)
   - https://github.com/BlissRoms/platform_manifest (How to build on Ubuntu)
-  - https://github.com/USBhost/build-tools-gcc (To build the kernel toolchain)
+  - https://github.com/USBhost/build-tools-gcc (Toolchain to build the kernel)
     - Compiled version here 10.x (use for flipflop) : 
       - https://drive.google.com/file/d/1kZlwfGhy3iOLkNHBsliwi2wBvY7QmN53
     - Compiled version here 8.3 (use for shadow) : 

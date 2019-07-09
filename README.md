@@ -13,6 +13,7 @@ Links:
   - the local.xml contains nexus 5x specific repos
   - the local_flipflop.xml contains my fork nexus 5x specific repos (flipflop kernel)
   - the local_shadow.xml contains my fork nexus 5x specific repos (shadow kernel)
+  - the origin_shadow.xml contains nexus 5x specific repos (shadow origin kernel)
   
   The Jenkins pipeline parameters:
   ![picture](jenkins.PNG)

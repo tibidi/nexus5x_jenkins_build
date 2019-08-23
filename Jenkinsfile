@@ -67,7 +67,7 @@ node('builder') {
 		export TARGET_KERNEL_CONFIG=$(echo $NEXUS_MANIFEST | sed "s/.*_//" | sed "s/.xml/_defconfig/")
 
                 rm -rf ./out/target/product/bullhead/obj/PACKAGING/target_files_intermediates/*
-                rm -f ./out/target/product/bullhead/PixelExperience_bullhead-*.zip
+                rm -f ./out/target/product/bullhead/PixelExperience_*bullhead-*.zip
 
                 export BUILD_NUMBER_JENKINS=$BUILD_NUMBER
                 unset BUILD_NUMBER
@@ -97,7 +97,7 @@ node('builder') {
 
                 export BUILD_NUMBER=$BUILD_NUMBER_JENKINS
 
-                mv out/target/product/bullhead/PixelExperience_bullhead-*zip $ARCHIVE_DIR
+                mv out/target/product/bullhead/PixelExperience_*bullhead-*zip $ARCHIVE_DIR
                 cp out/target/product/bullhead/obj/PACKAGING/target_files_intermediates/aosp_bullhead-target_files-eng.root/SYSTEM/build.prop $ARCHIVE_DIR
         
                 cp out/target/product/bullhead/system/etc/Changelog.txt $ARCHIVE_DIR
@@ -119,11 +119,11 @@ node('builder') {
                 if (env.PATCH_BOOT_4C == 'true') {
                   def rc = sh (returnStatus: true, script: '''#!/usr/bin/env bash
                     cd $ARCHIVE_DIR
-                    unzip PixelExperience_bullhead-* boot.img
+                    unzip PixelExperience_*bullhead-* boot.img
                     mv boot.img boot.build.img
                     python /opt/misc/disable_cpu_cores.py boot.build.img boot.4c.img               
                     cp boot.4c.img boot.img
-                    zip PixelExperience_bullhead-* boot.img
+                    zip PixelExperience_*bullhead-* boot.img
                     rm boot.img
                     cd ..
                   ''')
@@ -158,7 +158,7 @@ node('builder') {
                       export folderId=$(drive folder -t ${TARGET_KERNEL_CONFIG}_${BUILD_DATE} --parent $DRIVE_FOLDER | grep Id | sed "s/.* //")
                       cp boot.build.img boot.build.$BUILD_DATE.img  
                       drive upload --file boot.build.$BUILD_DATE.img --parent $folderId
-                      drive upload --file PixelExperience_bullhead-*.zip --parent $folderId
+                      drive upload --file PixelExperience_*bullhead-*.zip --parent $folderId
                       drive upload --file kernel_$BUILD_DATE.tgz --parent $folderId  
                       drive upload --file contexthub_$BUILD_DATE.tgz --parent $folderId    
                       drive upload --file device_$BUILD_DATE.tgz  --parent $folderId

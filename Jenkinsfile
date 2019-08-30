@@ -155,7 +155,7 @@ node('builder') {
                 def rc = sh (returnStatus: true, script: '''#!/usr/bin/env bash
                       export BUILD_DATE=$(grep "org.pixelexperience.build_date=" build.prop | sed "s/.*=//")
 		      export TARGET_KERNEL_CONFIG=$(echo $NEXUS_MANIFEST | sed "s/.*_//" | sed "s/.xml//")
-                      export folderId=$(drive folder -t ${TARGET_KERNEL_CONFIG}_${BUILD_DATE} --parent $DRIVE_FOLDER | grep Id | sed "s/.* //")
+                      export folderId=$(drive folder -t ${AGENT_HOST}_${TARGET_KERNEL_CONFIG}_${BUILD_DATE} --parent $DRIVE_FOLDER | grep Id | sed "s/.* //")
                       cp boot.build.img boot.build.$BUILD_DATE.img  
                       drive upload --file boot.build.$BUILD_DATE.img --parent $folderId
                       drive upload --file PixelExperience_*bullhead-*.zip --parent $folderId

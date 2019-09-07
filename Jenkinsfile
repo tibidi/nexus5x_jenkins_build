@@ -21,7 +21,7 @@ node('builder') {
             if ( ! env.WORKDIR ) {
             	env.WORKDIR= env.WORKSPACE + '/build/'
             }
-            currentBuild.description = env.DEVICE+'_'+env.DEVICE+'-'+env.BUILD_TYPE
+            currentBuild.description = env.BRANCH+'_'+env.DEVICE+'-'+env.BUILD_TYPE
             env.SOURCE_DIR=env.WORKDIR + env.ANDROID_VER + '/pixel'
             env.ARCHIVE_DIR = env.SOURCE_DIR + '/archive'
             env.USE_CCACHE=1

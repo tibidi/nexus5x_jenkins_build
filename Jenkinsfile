@@ -16,8 +16,10 @@ node('builder') {
     
         stage('Preparation') {
             echo 'Setting up environment...'
-            env.ANDROID_VER='pie'
-            env.DEVICE='bullhead'
+            env.DEVICE='bullhead'		
+            if ( ! env.ANDROID_VER ) {		
+                env.ANDROID_VER='pie'
+	    }
             if ( ! env.WORKDIR ) {
             	env.WORKDIR= env.WORKSPACE + '/build/'
             }

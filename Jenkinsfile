@@ -51,9 +51,8 @@ node('builder') {
             if (env.SYNC == 'true' ) {
                 sh 'rm -f .repo/local_manifests/*'
 
-                checkout poll: false, scm: [$class: 'RepoScm', currentBranch: true, destinationDir: env.SOURCE_DIR, forceSync: true, jobs: env.JOBS, manifestBranch: env.BRANCH,
+                checkout poll: false, changelog: false, scm: [$class: 'RepoScm', currentBranch: true, destinationDir: env.SOURCE_DIR, forceSync: true, jobs: env.JOBS, manifestBranch: env.BRANCH,
                     manifestRepositoryUrl: env.MANIFEST, noTags: true, quiet: true,
-	            changelog: false,				    
                     localManifest: env.NEXUS_MANIFEST
                 ]
             }

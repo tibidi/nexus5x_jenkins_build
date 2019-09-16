@@ -7,7 +7,7 @@
     <!--project name="tibidi/platform_hardware_qcom_audio"  path="hardware/qcom/audio/default" remote="github" revision="p9.0"/-->
    
     <!-- Add AOSP Context Hub-->
-    <!-- remove-project name="device/google/contexthub" /-->
+    <remove-project name="device/google/contexthub" />
     <project path="device/google/contexthub" name="device/google/contexthub" />
     
     <!-- LGE Kernel/Device/Vendor (don't like pixel auto add)-->

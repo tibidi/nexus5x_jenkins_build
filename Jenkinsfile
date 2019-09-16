@@ -21,6 +21,9 @@ node('builder') {
             if ( ! env.WORKDIR ) {
             	env.WORKDIR= env.WORKSPACE + '/build/'
             }
+            if ( ! env.MANIFEST ) {
+            	env.MANIFEST= 'https://github.com/PixelExperience/manifest'
+            }		
             currentBuild.description = env.BRANCH+'_'+env.DEVICE+'-'+env.BUILD_TYPE
             env.SOURCE_DIR=env.WORKDIR + env.ANDROID_VER + '/pixel'
             env.ARCHIVE_DIR = env.SOURCE_DIR + '/archive'
@@ -47,7 +50,7 @@ node('builder') {
                 sh 'rm -f .repo/local_manifests/*'
 
                 checkout poll: false, scm: [$class: 'RepoScm', currentBranch: true, destinationDir: env.SOURCE_DIR, forceSync: true, jobs: env.JOBS, manifestBranch: env.BRANCH,
-                    manifestRepositoryUrl: 'https://github.com/PixelExperience/manifest', noTags: true, quiet: true,
+                    manifestRepositoryUrl: env.MANIFEST, noTags: true, quiet: true,
                     localManifest: env.NEXUS_MANIFEST
                 ]
             }

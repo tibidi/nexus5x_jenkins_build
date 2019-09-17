@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+
+
 <manifest>
     <!-- Headphone call issue with this project from lineage-->
     <remove-project name="hardware_qcom_audio" />
@@ -16,3 +19,8 @@
     <project name="tibidi/kernel_lge_jby" path="kernel/jby/bullhead" remote="github" revision="master" />
     
 </manifest>
+
+
+
+
+

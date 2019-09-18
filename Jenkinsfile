@@ -90,7 +90,7 @@ node('builder') {
 		 fi
 
                 # Load build environment
-                
+                . build/envsetup.sh
                 lunch aosp_bullhead-$BUILD_TYPE
 
                 if [ $? -ne 0 ]

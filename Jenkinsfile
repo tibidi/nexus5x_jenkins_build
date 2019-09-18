@@ -84,7 +84,7 @@ node('builder') {
 		then
                    prebuilts/misc/linux-x86/ccache/ccache -M 20G
 		 else
-		   env.USE_CCACHE=0
+		   export USE_CCACHE=0
 		 fi
 
                 # Load build environment

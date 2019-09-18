@@ -29,9 +29,6 @@ node('builder') {
             currentBuild.description = env.BRANCH+'_'+env.DEVICE+'-'+env.BUILD_TYPE
             env.SOURCE_DIR=env.WORKDIR + env.ANDROID_VER + '/pixel'
             env.ARCHIVE_DIR = env.SOURCE_DIR + '/archive'
-            env.USE_CCACHE=1
-            env.CCACHE_DIR="${env.SOURCE_DIR}/.ccache"
-            env.CCACHE_NLEVELS=4
             env.ANDROID_JACK_VM_ARGS='-Xmx8g -Dfile.encoding=UTF-8 -XX:+TieredCompilation'
             env.LC_ALL='C'
             
@@ -82,9 +79,10 @@ node('builder') {
 
 		if [ -f prebuilts/misc/linux-x86/ccache/ccache ]
 		then
+                   export USE_CCACHE=1
+                   export CCACHE_DIR="${env.SOURCE_DIR}/.ccache"
+                   export CCACHE_NLEVELS=4		
                    prebuilts/misc/linux-x86/ccache/ccache -M 20G
-		 else
-		   export USE_CCACHE=0
 		 fi
 
                 # Load build environment

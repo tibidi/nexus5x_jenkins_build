@@ -80,7 +80,7 @@ node('builder') {
                 mkdir -p $ARCHIVE_DIR
                 rm -rf $ARCHIVE_DIR/*
 
-		if [ test -f prebuilts/misc/linux-x86/ccache/ccache ]
+		if [ -f prebuilts/misc/linux-x86/ccache/ccache ]
 		then
                    prebuilts/misc/linux-x86/ccache/ccache -M 20G
 		 else

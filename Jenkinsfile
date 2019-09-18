@@ -38,6 +38,11 @@ node('builder') {
             expr 0 + $(grep -c ^processor /proc/cpuinfo)
             ''').trim()
             echo 'Cores available: ' + env.JOBS
+		
+            env.USE_CCACHE=1
+            env.CCACHE_DIR="${env.SOURCE_DIR}/.ccache"
+            env.CCACHE_NLEVELS=4
+		
             if (env.CLEAN_BEFORE == 'true') {
                 cleanUp()
             }
@@ -78,15 +83,14 @@ node('builder') {
                 rm -rf $ARCHIVE_DIR/*
 
 		if [ -f prebuilts/misc/linux-x86/ccache/ccache ]
-		then
-                   export USE_CCACHE=1
-                   export CCACHE_DIR="${env.SOURCE_DIR}/.ccache"
-                   export CCACHE_NLEVELS=4		
+		then		
                    prebuilts/misc/linux-x86/ccache/ccache -M 20G
+		else
+		   ccache -M 20G
 		 fi
 
                 # Load build environment
-                . build/envsetup.sh
+                
                 lunch aosp_bullhead-$BUILD_TYPE
 
                 if [ $? -ne 0 ]

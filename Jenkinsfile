@@ -80,7 +80,12 @@ node('builder') {
                 mkdir -p $ARCHIVE_DIR
                 rm -rf $ARCHIVE_DIR/*
 
-                prebuilts/misc/linux-x86/ccache/ccache -M 20G
+		if [ test -f prebuilts/misc/linux-x86/ccache/ccache ]
+		then
+                   prebuilts/misc/linux-x86/ccache/ccache -M 20G
+		 else
+		   env.USE_CCACHE=0
+		 fi
 
                 # Load build environment
                 . build/envsetup.sh

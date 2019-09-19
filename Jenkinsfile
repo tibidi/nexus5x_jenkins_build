@@ -99,7 +99,12 @@ node('builder') {
                     exit 2
                 fi
 
-                mka bacon -j$JOBS
+                if [ ! -z "$BUILD_JOB" ] 
+		then
+		  mka bacon -j$BUILD_JOB
+		else
+                  mka bacon -j$JOBS
+		fi
 
                 if [ $? -ne 0 ]
                 then

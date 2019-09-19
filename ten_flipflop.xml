@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <manifest>
+    <remove-project name="hardware_qcom_audio" />
+
+    <!-- Use Bliss Audio -->
+    <project name="tibidi/platform_hardware_qcom_audio"  path="hardware/qcom/audio/default" remote="github" revision="p9.0"/>  
 </manifest>
 
 

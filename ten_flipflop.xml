@@ -1,20 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <manifest>
-    <!-- Headphone call issue with this project from lineage-->
-    <remove-project name="hardware_qcom_audio" />
-
-    <!-- Use Bliss Audio -->
-    <project name="tibidi/platform_hardware_qcom_audio"  path="hardware/qcom/audio/default" remote="github" revision="p9.0"/>
-   
-    <!-- Add AOSP Context Hub-->
-    <remove-project name="device/google/contexthub" />
-    <project path="device/google/contexthub" name="device/google/contexthub" />
-    
-    <!-- LGE Kernel/Device/Vendor (don't like pixel auto add)-->
-    <project name="PixelExperience-Devices/device_lge_bullhead" path="device/lge/bullhead" remote="github" revision="ten" />
-    <project name="tibidi/proprietary_vendor_lge" path="vendor/lge" remote="github" revision="p9.0" />
-    <project name="flipflop133/flipflop" path="kernel/flipflop/bullhead" remote="github" revision="flipflop" />  
 </manifest>
 
 

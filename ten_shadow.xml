@@ -19,11 +19,7 @@
     <project name="tibidi/kernel_lge_jby" path="kernel/jby/bullhead" remote="github" revision="master" />
     <project name="flipflop133/flipflop" path="kernel/flipflop/bullhead" remote="github" revision="flipflop" />
     
-    
-    
-    
-    
-    
+     <remove-project name="hardware/ril-caf" />
     
 </manifest>
 

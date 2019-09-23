@@ -10,14 +10,7 @@
     <project name="lakgarg/flipflop-1" path="kernel/lge/bullhead" remote="github" revision="flipflop" />
     <project name="lakgarg/proprietary_vendor_lge" path="vendor/lge" remote="github" revision="10" />
     <project name="francois133/gcc_10_toolchain" path="prebuilts/gcc_toolchain_10" remote="gitlab" revision="master" />
-    
-    <remove-project name="hardware/ril-caf" />
-    
-    
-    
-    
-    
-    
+
 </manifest>
 
 

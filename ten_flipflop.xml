@@ -3,33 +3,21 @@
 <manifest>
     <!--remove-project name="hardware_qcom_audio" /-->
 
-    <!-- Use Bliss Audio -->
+    <!--Use Bliss Audio-->
     <!--project name="tibidi/platform_hardware_qcom_audio"  path="hardware/qcom/audio/default" remote="github" revision="p9.0"/-->
+    
+    
+    
+    
+    
+    
+    
     
     <project name="device_lge_bullhead" path="device/lge/bullhead" remote="pixel-devices" revision="ten" />
     <project name="lakgarg/flipflop-1" path="kernel/lge/bullhead" remote="github" revision="flipflop" />
     <project name="lakgarg/proprietary_vendor_lge" path="vendor/lge" remote="github" revision="10" />
     <project name="francois133/gcc_10_toolchain" path="prebuilts/gcc_toolchain_10" remote="gitlab" revision="master" />
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
 </manifest>
 
 

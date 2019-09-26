@@ -1,0 +1,294 @@
+
+project hardware/qcom/audio/default/
+diff --git a/hal/Android.mk b/hal/Android.mk
+index e6be0a6..edd50bc 100644
+--- a/hal/Android.mk
++++ b/hal/Android.mk
+@@ -230,6 +230,8 @@ LOCAL_SRC_FILES += audio_perf.cpp
+ 
+ LOCAL_HEADER_LIBRARIES += libhardware_headers
+ 
++LOCAL_HEADER_LIBRARIES += generated_kernel_headers
++
+ LOCAL_MODULE := audio.primary.$(TARGET_BOARD_PLATFORM)
+ 
+ LOCAL_MODULE_RELATIVE_PATH := hw
+diff --git a/post_proc/Android.mk b/post_proc/Android.mk
+index 25da4eb..e3500bf 100644
+--- a/post_proc/Android.mk
++++ b/post_proc/Android.mk
+@@ -38,6 +38,7 @@ LOCAL_C_INCLUDES := \
+ 
+ LOCAL_HEADER_LIBRARIES += libhardware_headers
+ LOCAL_HEADER_LIBRARIES += libsystem_headers
++LOCAL_HEADER_LIBRARIES += generated_kernel_headers
+ include $(BUILD_SHARED_LIBRARY)
+ endif
+ 
+@@ -70,6 +71,7 @@ LOCAL_C_INCLUDES := \
+ 
+ LOCAL_HEADER_LIBRARIES += libhardware_headers
+ LOCAL_HEADER_LIBRARIES += libsystem_headers
++LOCAL_HEADER_LIBRARIES += generated_kernel_headers
+ include $(BUILD_SHARED_LIBRARY)
+ 
+ endif
+@@ -103,6 +105,7 @@ LOCAL_C_INCLUDES := \
+ 
+ LOCAL_HEADER_LIBRARIES += libhardware_headers
+ LOCAL_HEADER_LIBRARIES += libsystem_headers
++LOCAL_HEADER_LIBRARIES += generated_kernel_headers
+ include $(BUILD_SHARED_LIBRARY)
+ 
+ endif
+
+project hardware/qcom/bt/
+diff --git a/msm8992/libbt-vendor/Android.mk b/msm8992/libbt-vendor/Android.mk
+index e5ae9f1..c857a15 100644
+--- a/msm8992/libbt-vendor/Android.mk
++++ b/msm8992/libbt-vendor/Android.mk
+@@ -22,6 +22,8 @@ include $(CLEAR_VARS)
+ 
+ BDROID_DIR:= system/bt
+ 
++LOCAL_CFLAGS += -Wno-error=implicit-function-declaration
++
+ LOCAL_SRC_FILES := \
+         src/bt_vendor_qcom.c \
+         src/hardware.c \
+
+project hardware/qcom/display/
+diff --git a/msm8994/common.mk b/msm8994/common.mk
+index bbc22231..254cfe37 100644
+--- a/msm8994/common.mk
++++ b/msm8994/common.mk
+@@ -14,7 +14,9 @@ common_libs := liblog libutils libcutils libhardware
+ 
+ #Common C flags
+ common_flags := -DDEBUG_CALC_FPS -Wno-missing-field-initializers
+-common_flags += -Wconversion -Wall -Werror
++#common_flags += -Wconversion -Wall -Werror
++common_flags += -Wconversion -Wall -Werror -Wno-error=gnu-designator  -Wno-error=sign-conversion  -Wno-error=unused-value -Wno-error=unused-function -Wno-error=float-conversion -Wno-error=sizeof-array-argument
++common_flags += -Wno-error=unused-variable -Wno-error=implicit-fallthrough -Wno-error=pointer-bool-conversion -Wno-error=logical-not-parentheses
+ 
+ ifeq ($(TARGET_USES_POST_PROCESSING),true)
+     common_flags     += -DUSES_POST_PROCESSING
+diff --git a/msm8994/libcopybit/Android.mk b/msm8994/libcopybit/Android.mk
+index 7b12310c..4005fe6a 100644
+--- a/msm8994/libcopybit/Android.mk
++++ b/msm8994/libcopybit/Android.mk
+@@ -22,7 +22,7 @@ include $(BUILD_COPY_HEADERS)
+ 
+ include $(CLEAR_VARS)
+ # b/24171136 many files not compiling with clang/llvm yet
+-LOCAL_CLANG := false
++# LOCAL_CLANG := false
+ 
+ LOCAL_MODULE                  := copybit.$(TARGET_BOARD_PLATFORM)
+ LOCAL_MODULE_RELATIVE_PATH    := hw
+diff --git a/msm8994/libgralloc/Android.mk b/msm8994/libgralloc/Android.mk
+index ac3d4929..56f38bfb 100644
+--- a/msm8994/libgralloc/Android.mk
++++ b/msm8994/libgralloc/Android.mk
+@@ -18,7 +18,7 @@ include $(LOCAL_PATH)/../common.mk
+ include $(CLEAR_VARS)
+ 
+ # b/24171136 many files not compiling with clang/llvm yet
+-LOCAL_CLANG := false
++# LOCAL_CLANG := false
+ 
+ LOCAL_MODULE                  := gralloc.$(TARGET_BOARD_PLATFORM)
+ LOCAL_MODULE_RELATIVE_PATH    := hw
+@@ -46,7 +46,7 @@ include $(BUILD_SHARED_LIBRARY)
+ include $(CLEAR_VARS)
+ 
+ # b/24171136 many files not compiling with clang/llvm yet
+-LOCAL_CLANG := false
++# LOCAL_CLANG := false
+ 
+ LOCAL_MODULE                  := libmemalloc
+ LOCAL_MODULE_TAGS             := optional
+diff --git a/msm8994/libhdmi/Android.mk b/msm8994/libhdmi/Android.mk
+index 1aab46d8..0110a888 100644
+--- a/msm8994/libhdmi/Android.mk
++++ b/msm8994/libhdmi/Android.mk
+@@ -3,7 +3,7 @@ include $(LOCAL_PATH)/../common.mk
+ include $(CLEAR_VARS)
+ 
+ # b/24171136 many files not compiling with clang/llvm yet
+-LOCAL_CLANG := false
++# LOCAL_CLANG := false
+ 
+ LOCAL_MODULE                  := libhdmi
+ LOCAL_MODULE_TAGS             := optional
+diff --git a/msm8994/libhwcomposer/Android.mk b/msm8994/libhwcomposer/Android.mk
+index 9ae742d3..3423fd40 100644
+--- a/msm8994/libhwcomposer/Android.mk
++++ b/msm8994/libhwcomposer/Android.mk
+@@ -3,7 +3,7 @@ include $(LOCAL_PATH)/../common.mk
+ include $(CLEAR_VARS)
+ 
+ # b/24171136 many files not compiling with clang/llvm yet
+-LOCAL_CLANG := false
++# LOCAL_CLANG := false
+ 
+ LOCAL_MODULE                  := hwcomposer.$(TARGET_BOARD_PLATFORM)
+ LOCAL_MODULE_RELATIVE_PATH    := hw
+diff --git a/msm8994/libhwcomposer/hwc_uevents.cpp b/msm8994/libhwcomposer/hwc_uevents.cpp
+index d1c68a5d..3c6bff93 100644
+--- a/msm8994/libhwcomposer/hwc_uevents.cpp
++++ b/msm8994/libhwcomposer/hwc_uevents.cpp
+@@ -58,7 +58,7 @@ static bool getPanelResetStatus(hwc_context_t* ctx, const char* strUdata, int le
+     const char* iter_str = strUdata;
+     if (strcasestr("change@/devices/virtual/graphics/fb0", strUdata)) {
+         while(((iter_str - strUdata) <= len) && (*iter_str)) {
+-            char* pstr = strstr(iter_str, "PANEL_ALIVE=0");
++            char const * pstr = strstr(iter_str, "PANEL_ALIVE=0");
+             if (pstr != NULL) {
+                 ALOGI("%s: got change event in fb0 with PANEL_ALIVE=0",
+                                                            __FUNCTION__);
+@@ -76,7 +76,7 @@ static int getConnectedState(const char* strUdata, int len)
+ {
+     const char* iter_str = strUdata;
+     while(((iter_str - strUdata) <= len) && (*iter_str)) {
+-        char* pstr = strstr(iter_str, "SWITCH_STATE=");
++        char const * pstr = strstr(iter_str, "SWITCH_STATE=");
+         if (pstr != NULL) {
+             return (atoi(pstr + strlen("SWITCH_STATE=")));
+         }
+diff --git a/msm8994/liboverlay/Android.mk b/msm8994/liboverlay/Android.mk
+index 26a058f2..4e846371 100644
+--- a/msm8994/liboverlay/Android.mk
++++ b/msm8994/liboverlay/Android.mk
+@@ -3,7 +3,7 @@ include $(LOCAL_PATH)/../common.mk
+ include $(CLEAR_VARS)
+ 
+ # b/24171136 many files not compiling with clang/llvm yet
+-LOCAL_CLANG := false
++# LOCAL_CLANG := false
+ 
+ LOCAL_MODULE                  := liboverlay
+ LOCAL_MODULE_TAGS             := optional
+diff --git a/msm8994/libqdutils/Android.mk b/msm8994/libqdutils/Android.mk
+index e9861a08..643f9523 100644
+--- a/msm8994/libqdutils/Android.mk
++++ b/msm8994/libqdutils/Android.mk
+@@ -3,7 +3,7 @@ include $(LOCAL_PATH)/../common.mk
+ include $(CLEAR_VARS)
+ 
+ # b/24171136 many files not compiling with clang/llvm yet
+-LOCAL_CLANG := false
++# LOCAL_CLANG := false
+ 
+ LOCAL_MODULE                  := libqdutils
+ LOCAL_MODULE_TAGS             := optional
+@@ -23,7 +23,7 @@ include $(BUILD_SHARED_LIBRARY)
+ include $(CLEAR_VARS)
+ 
+ # b/24171136 many files not compiling with clang/llvm yet
+-LOCAL_CLANG := false
++# LOCAL_CLANG := false
+ 
+ LOCAL_COPY_HEADERS_TO           := $(common_header_export_path)
+ LOCAL_COPY_HEADERS              := qdMetaData.h
+diff --git a/msm8994/libqservice/Android.mk b/msm8994/libqservice/Android.mk
+index 9acbd88f..a86b0c1f 100644
+--- a/msm8994/libqservice/Android.mk
++++ b/msm8994/libqservice/Android.mk
+@@ -3,7 +3,7 @@ include $(LOCAL_PATH)/../common.mk
+ include $(CLEAR_VARS)
+ 
+ # b/24171136 many files not compiling with clang/llvm yet
+-LOCAL_CLANG := false
++# LOCAL_CLANG := false
+ 
+ LOCAL_MODULE                  := libqservice
+ LOCAL_MODULE_TAGS             := optional
+
+project hardware/qcom/media/
+diff --git a/msm8974/libc2dcolorconvert/Android.mk b/msm8974/libc2dcolorconvert/Android.mk
+index e055c04..90b3287 100644
+--- a/msm8974/libc2dcolorconvert/Android.mk
++++ b/msm8974/libc2dcolorconvert/Android.mk
+@@ -2,6 +2,8 @@ LOCAL_PATH := $(call my-dir)
+ 
+ include $(CLEAR_VARS)
+ 
++LOCAL_HEADER_LIBRARIES    := generated_kernel_headers
++
+ LOCAL_SRC_FILES := \
+         C2DColorConverter.cpp
+ 
+diff --git a/msm8974/mm-video-v4l2/vidc/vdec.mk b/msm8974/mm-video-v4l2/vidc/vdec.mk
+index 457fcd8..c97a202 100644
+--- a/msm8974/mm-video-v4l2/vidc/vdec.mk
++++ b/msm8974/mm-video-v4l2/vidc/vdec.mk
+@@ -6,6 +6,8 @@ OMX_VIDEO_PATH := $(ROOT_DIR)/..
+ include $(CLEAR_VARS)
+ LOCAL_PATH:= $(ROOT_DIR)
+ 
++LOCAL_HEADER_LIBRARIES    := generated_kernel_headers
++
+ # ---------------------------------------------------------------------------------
+ # 				Common definitons
+ # ---------------------------------------------------------------------------------
+@@ -114,6 +116,8 @@ LOCAL_MODULE_TAGS               := optional
+ LOCAL_CFLAGS                    := $(libOmxVdec-def)
+ LOCAL_C_INCLUDES                += $(libmm-vdec-inc)
+ 
++LOCAL_HEADER_LIBRARIES  := generated_kernel_headers
++
+ LOCAL_SHARED_LIBRARIES  := liblog libutils libui libbinder libcutils libdl
+ 
+ LOCAL_SHARED_LIBRARIES  += libdivxdrmdecrypt
+@@ -189,11 +193,15 @@ mm-vdec-test-inc    := $(call project-path-for,qcom-media)/mm-core/inc
+ mm-vdec-test-inc    += $(LOCAL_PATH)/vdec/inc
+ mm-vdec-test-inc    += $(vdec-inc)
+ 
++LOCAL_HEADER_LIBRARIES    := generated_kernel_headers
++
+ LOCAL_MODULE                    := mm-vdec-omx-test
+ LOCAL_MODULE_TAGS               := optional
+ LOCAL_CFLAGS                    := $(libOmxVdec-def)
+ LOCAL_C_INCLUDES                := $(mm-vdec-test-inc)
+ 
++LOCAL_HEADER_LIBRARIES    := generated_kernel_headers
++
+ LOCAL_SHARED_LIBRARIES    := libutils libui libOmxCore libOmxVdec libbinder libcutils
+ 
+ LOCAL_SRC_FILES           := vdec/src/queue.c
+diff --git a/msm8974/mm-video-v4l2/vidc/vdec/inc/mp4_utils.h b/msm8974/mm-video-v4l2/vidc/vdec/inc/mp4_utils.h
+index 93c04e7..b32f390 100755
+--- a/msm8974/mm-video-v4l2/vidc/vdec/inc/mp4_utils.h
++++ b/msm8974/mm-video-v4l2/vidc/vdec/inc/mp4_utils.h
+@@ -38,7 +38,7 @@ typedef int int32;   /* Signed 32 bit value */
+ typedef signed short int16;   /* Signed 16 bit value */
+ typedef signed char int8;   /* Signed 8  bit value */
+ 
+-typedef unsigned char byte;   /* Unsigned 8  bit value type. */
++typedef unsigned char BYTE;   /* Unsigned 8  bit value type. */
+ #define SIMPLE_PROFILE_LEVEL0            0x08
+ #define SIMPLE_PROFILE_LEVEL1            0x01
+ #define SIMPLE_PROFILE_LEVEL2            0x02
+@@ -154,7 +154,7 @@ class MP4_Utils
+         };
+ 
+         posInfoType m_posInfo;
+-        byte *m_dataBeginPtr;
++        BYTE *m_dataBeginPtr;
+         unsigned int vop_time_resolution;
+         bool vop_time_found;
+         uint16 m_SrcWidth, m_SrcHeight;   // Dimensions of the source clip
+diff --git a/msm8974/mm-video-v4l2/vidc/venc.mk b/msm8974/mm-video-v4l2/vidc/venc.mk
+index 27f8c1d..49c5436 100644
+--- a/msm8974/mm-video-v4l2/vidc/venc.mk
++++ b/msm8974/mm-video-v4l2/vidc/venc.mk
+@@ -93,6 +93,8 @@ LOCAL_MODULE_TAGS               := optional
+ LOCAL_CFLAGS                    := $(libmm-venc-def)
+ LOCAL_C_INCLUDES                := $(libmm-venc-inc)
+ 
++LOCAL_HEADER_LIBRARIES    := generated_kernel_headers
++
+ LOCAL_SHARED_LIBRARIES    := liblog libutils libbinder libcutils \
+                              libc2dcolorconvert libdl libgui
+ 

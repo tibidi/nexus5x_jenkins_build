@@ -1,4 +1,5 @@
-FROM_SOONG
+./vendor/aosp/build/soong/soong_config.mk
+  -> FROM_SOONG ??
 cd hardware/qcom/media
 ln -sf msm8974 msm8992
 

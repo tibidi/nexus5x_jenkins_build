@@ -1,3 +1,7 @@
+system/sepolicy/Android.mk
+   SELINUX_IGNORE_NEVERALLOWS
+   ./vendor/aosp/build/core/config.mk:SELINUX_IGNORE_NEVERALLOWS := true
+   
 ./vendor/aosp/build/soong/soong_config.mk
   -> FROM_SOONG ??
 cd hardware/qcom/media

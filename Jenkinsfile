@@ -156,7 +156,12 @@ node('builder') {
                     tar czf $ARCHIVE_DIR/contexthub_$BUILD_DATE.tgz device/google/contexthub
 		    tar czf $ARCHIVE_DIR/device_$BUILD_DATE.tgz device/lge/bullhead
 		    tar czf $ARCHIVE_DIR/vendor_$BUILD_DATE.tgz vendor/lge
-		    tar czf $ARCHIVE_DIR/audio_$BUILD_DATE.tgz hardware/qcom/audio/default
+		    if [ -d "hardware/qcom/audio/default" ]
+		    then
+		      tar czf $ARCHIVE_DIR/audio_$BUILD_DATE.tgz hardware/qcom/audio/default
+		    else
+		      tar czf $ARCHIVE_DIR/audio_$BUILD_DATE.tgz hardware/qcom/audio
+		    fi
                   ''')				
 				}                
             }

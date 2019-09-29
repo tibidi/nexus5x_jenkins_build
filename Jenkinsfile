@@ -43,6 +43,10 @@ node('builder') {
             env.CCACHE_DIR="${env.SOURCE_DIR}/.ccache"
             env.CCACHE_NLEVELS=4
 		
+            if ( ! env.CCACHE_CUSTOM_SIZE ) {
+            	env.CCACHE_CUSTOM_SIZE=20G
+            }		
+		
             if (env.CLEAN_BEFORE == 'true') {
                 cleanUp()
             }
@@ -84,7 +88,7 @@ node('builder') {
 
 		if [ -f prebuilts/misc/linux-x86/ccache/ccache ]
 		then		
-                   prebuilts/misc/linux-x86/ccache/ccache -M 20G
+                   prebuilts/misc/linux-x86/ccache/ccache -M $CCACHE_CUSTOM_SIZE
 		else
 		   ccache -M 20G
 		 fi

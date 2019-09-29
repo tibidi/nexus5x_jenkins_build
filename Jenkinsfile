@@ -90,7 +90,7 @@ node('builder') {
 		then		
                    prebuilts/misc/linux-x86/ccache/ccache -M $CCACHE_CUSTOM_SIZE
 		else
-		   ccache -M 20G
+		   ccache -M $CCACHE_CUSTOM_SIZE
 		 fi
 
                 # Load build environment

@@ -1,7 +1,53 @@
+project device/lge/bullhead/
+diff --git a/BoardConfig.mk b/BoardConfig.mk
+index 9270d25..b1731e8 100644
+--- a/BoardConfig.mk
++++ b/BoardConfig.mk
+@@ -49,7 +49,8 @@ BOARD_KERNEL_PAGESIZE    := 4096
+ BOARD_KERNEL_TAGS_OFFSET := 0x01E00000
+ BOARD_RAMDISK_OFFSET     := 0x02000000
+ 
+-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=bullhead boot_cpus=0-5
++#BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=bullhead boot_cpus=0-5
++BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=bullhead boot_cpus=0-3 maxcpus=4
+ BOARD_KERNEL_CMDLINE += lpm_levels.sleep_disabled=1 msm_poweroff.download_mode=0
+ BOARD_KERNEL_CMDLINE += loop.max_part=7 androidboot.selinux=permissive androidboot.boot_devices=soc.0/f9824900.sdhci
+ 
+@@ -202,4 +203,4 @@ BOARD_SUPPRESS_SECURE_ERASE := true
+ 
+ TARGET_USES_ALTERNATIVE_MANUAL_NETWORK_SELECT := true
+ 
+-TARGET_FLATTEN_APEX := true
+\ No newline at end of file
++TARGET_FLATTEN_APEX := true
+diff --git a/init.bullhead.rc b/init.bullhead.rc
+index 0d5148a..cd0d8c5 100644
+--- a/init.bullhead.rc
++++ b/init.bullhead.rc
+@@ -116,11 +116,15 @@ on boot
+     # update foreground cpuset now that processors are up
+     # foreground gets all CPUs except CPU 3
+     # CPU 3 is reserved for the top app
+-    write /dev/cpuset/foreground/cpus 0-2,4-5
+-    write /dev/cpuset/background/cpus 0
+-    write /dev/cpuset/system-background/cpus 0-2
++    #write /dev/cpuset/foreground/cpus 0-2,4-5
++    write /dev/cpuset/foreground/cpus 0-3
++    #write /dev/cpuset/background/cpus 0
++    write /dev/cpuset/background/cpus 3
++    #write /dev/cpuset/system-background/cpus 0-2
++    write /dev/cpuset/system-background/cpus 2-3
+     write /dev/cpuset/restricted/cpus 0-1
+-    write /dev/cpuset/top-app/cpus 0-5
++    #write /dev/cpuset/top-app/cpus 0-5
++    write /dev/cpuset/top-app/cpus 0-3
+ 
+     # Bluetooth
+     chown bluetooth net_bt /sys/class/rfkill/rfkill0/type
 
-project hardware/qcom/audio/default/
+project hardware/qcom/audio/
 diff --git a/hal/Android.mk b/hal/Android.mk
-index e6be0a6..edd50bc 100644
+index e6be0a61f..edd50bc4b 100644
 --- a/hal/Android.mk
 +++ b/hal/Android.mk
 @@ -230,6 +230,8 @@ LOCAL_SRC_FILES += audio_perf.cpp
@@ -14,7 +60,7 @@ index e6be0a6..edd50bc 100644
  
  LOCAL_MODULE_RELATIVE_PATH := hw
 diff --git a/post_proc/Android.mk b/post_proc/Android.mk
-index 25da4eb..e3500bf 100644
+index ce84e4162..31bb442be 100644
 --- a/post_proc/Android.mk
 +++ b/post_proc/Android.mk
 @@ -38,6 +38,7 @@ LOCAL_C_INCLUDES := \
@@ -220,7 +266,7 @@ index e055c04..90b3287 100644
          C2DColorConverter.cpp
  
 diff --git a/msm8974/mm-video-v4l2/vidc/vdec.mk b/msm8974/mm-video-v4l2/vidc/vdec.mk
-index 457fcd8..c97a202 100644
+index c53cc7a..1d12241 100644
 --- a/msm8974/mm-video-v4l2/vidc/vdec.mk
 +++ b/msm8974/mm-video-v4l2/vidc/vdec.mk
 @@ -6,6 +6,8 @@ OMX_VIDEO_PATH := $(ROOT_DIR)/..
@@ -241,7 +287,7 @@ index 457fcd8..c97a202 100644
  LOCAL_SHARED_LIBRARIES  := liblog libutils libui libbinder libcutils libdl
  
  LOCAL_SHARED_LIBRARIES  += libdivxdrmdecrypt
-@@ -189,11 +193,15 @@ mm-vdec-test-inc    := $(call project-path-for,qcom-media)/mm-core/inc
+@@ -189,11 +193,15 @@ mm-vdec-test-inc    := hardware/qcom/media/msm8974/mm-core/inc
  mm-vdec-test-inc    += $(LOCAL_PATH)/vdec/inc
  mm-vdec-test-inc    += $(vdec-inc)
  
@@ -280,7 +326,7 @@ index 93c04e7..b32f390 100755
          bool vop_time_found;
          uint16 m_SrcWidth, m_SrcHeight;   // Dimensions of the source clip
 diff --git a/msm8974/mm-video-v4l2/vidc/venc.mk b/msm8974/mm-video-v4l2/vidc/venc.mk
-index 27f8c1d..49c5436 100644
+index 65cce9d..b94d5b9 100644
 --- a/msm8974/mm-video-v4l2/vidc/venc.mk
 +++ b/msm8974/mm-video-v4l2/vidc/venc.mk
 @@ -93,6 +93,8 @@ LOCAL_MODULE_TAGS               := optional

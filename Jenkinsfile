@@ -56,6 +56,7 @@ node('builder') {
           dir(env.SOURCE_DIR) {
             if (env.SYNC == 'true' ) {
                 sh 'rm -f .repo/local_manifests/*'
+                sh 'repo diff > repo.diff'		    
 
                 checkout poll: false, changelog: true, scm: [$class: 'RepoScm', currentBranch: true, destinationDir: env.SOURCE_DIR, forceSync: true, jobs: env.JOBS, manifestBranch: env.BRANCH,
                     manifestRepositoryUrl: env.MANIFEST, noTags: true, quiet: true,
@@ -170,6 +171,9 @@ node('builder') {
         stage('Archiving') {
             echo 'Archiving ...'
             dir(env.ARCHIVE_DIR) {
+		if (env.SYNC == 'true' ) {
+		     sh 'cp ../repo.diff .'	
+		}
                 archiveArtifacts allowEmptyArchive: true, artifacts: '**', excludes: '*target*', fingerprint: true, onlyIfSuccessful: true
             }
         }
@@ -189,7 +193,8 @@ node('builder') {
                       drive upload --file contexthub_$BUILD_DATE.tgz --parent $folderId    
                       drive upload --file device_$BUILD_DATE.tgz  --parent $folderId
                       drive upload --file vendor_$BUILD_DATE.tgz --parent $folderId  
-                      drive upload --file audio_$BUILD_DATE.tgz --parent $folderId                      		      
+                      drive upload --file audio_$BUILD_DATE.tgz --parent $folderId
+		      drive upload --file repo.diff --parent $folderId
                 ''')
               }
 			}            

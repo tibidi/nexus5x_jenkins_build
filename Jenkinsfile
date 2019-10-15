@@ -56,7 +56,7 @@ node('builder') {
           dir(env.SOURCE_DIR) {
             if (env.SYNC == 'true' ) {
                 def rc = sh (returnStatus: true, script: '''#!/usr/bin/env bash		    
-                	repo diff > repo.diff
+                	repo diff > repo.${BUILD_NUMBER}.diff
                 	rm -f .repo/local_manifests/*
                 ''')		
 
@@ -174,7 +174,7 @@ node('builder') {
             echo 'Archiving ...'
             dir(env.ARCHIVE_DIR) {
 		if (env.SYNC == 'true' ) {
-		     sh 'cp ../repo.diff .'	
+		     sh "cp ../repo.${BUILD_NUMBER}.diff repo.diff"
 		}
                 archiveArtifacts allowEmptyArchive: true, artifacts: '**', excludes: '*target*', fingerprint: true, onlyIfSuccessful: true
             }

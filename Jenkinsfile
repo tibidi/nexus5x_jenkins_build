@@ -55,8 +55,10 @@ node('builder') {
         stage('Code syncing') {
           dir(env.SOURCE_DIR) {
             if (env.SYNC == 'true' ) {
-                sh 'repo diff > repo.diff'		    
-                sh 'rm -f .repo/local_manifests/*'
+                def rc = sh (returnStatus: true, script: '''#!/usr/bin/env bash		    
+                	repo diff > repo.diff
+                	rm -f .repo/local_manifests/*
+                ''')		
 
                 checkout poll: false, changelog: true, scm: [$class: 'RepoScm', currentBranch: true, destinationDir: env.SOURCE_DIR, forceSync: true, jobs: env.JOBS, manifestBranch: env.BRANCH,
                     manifestRepositoryUrl: env.MANIFEST, noTags: true, quiet: true,

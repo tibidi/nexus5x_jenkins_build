@@ -55,10 +55,13 @@ node('builder') {
         stage('Code syncing') {
           dir(env.SOURCE_DIR) {
             if (env.SYNC == 'true' ) {
-                def rc = sh (returnStatus: false, script: '''#!/usr/bin/env bash		    
-                	repo diff > repo.${BUILD_NUMBER}.diff
-                	rm -f .repo/local_manifests/*
-                ''')		
+		try {
+		    def rc = sh (returnStatus: true, script: '''#!/usr/bin/env bash		    
+                		repo diff > repo.${BUILD_NUMBER}.diff
+                		rm -f .repo/local_manifests/*
+                	''')
+		} catch (Exception e) {
+		}		    
 
                 checkout poll: false, changelog: true, scm: [$class: 'RepoScm', currentBranch: true, destinationDir: env.SOURCE_DIR, forceSync: true, jobs: env.JOBS, manifestBranch: env.BRANCH,
                     manifestRepositoryUrl: env.MANIFEST, noTags: true, quiet: true,

@@ -15,7 +15,8 @@ int cleanUpBuildOutput() {
   echo 'Cleaning up build result...'
   dir(env.SOURCE_DIR) {
         def rc = sh (returnStatus: true, script: '''#!/usr/bin/env bash
-                rm -rf ./out/*
+                rm -rf ./out
+		mkdir ./out
         ''')
   }
 }

@@ -11,6 +11,15 @@ int cleanUp() {
   }
 }
 
+int cleanUpBuildOutput() {
+  echo 'Cleaning up build result...'
+  dir(env.SOURCE_DIR) {
+        def rc = sh (returnStatus: true, script: '''#!/usr/bin/env bash
+                rm -rf ./out/*
+        ''')
+  }
+}
+
 node('builder') {
     try {
     
@@ -216,5 +225,8 @@ node('builder') {
         currentBuild.result = 'FAILURE'
         slackSend (color: 'danger', message: "Jenkins Builder - Job FAILED: '${env.JOB_NAME} [${env.BUILD_NUMBER} - ${currentBuild.description}]' (${env.BUILD_URL})")
     }
-    echo "RESULT: ${currentBuild.result}"
+    if (! env.CLEAN_OUT || env.CLEAN_OUT == 'true' ) {
+    	cleanUpBuildOutput()
+    }	
+    echo "RESULT: ${currentBuild.result}"	
 }

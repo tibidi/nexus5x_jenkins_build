@@ -11,6 +11,22 @@ int cleanUp() {
   }
 }
 
+int basicCleanUp() {
+  echo 'Minimal cleaning up environment...'
+  dir(env.SOURCE_DIR) {
+        def rc = sh (returnStatus: true, script: '''#!/usr/bin/env bash
+                cd out
+                rm -f $(find . -name "*.log.*.gz")
+                rm -f $(find . -name "soong*.log")
+                rm -f $(find . -name "error*.log")
+                rm -f $(find . -name "build*.trace*.gz")
+                rm -f $(find . -name "PixelExperience*")
+                rm -rf target/		
+        ''')
+  }
+}
+
+
 int cleanUpBuildOutput() {
   echo 'Cleaning up build result...'
   dir(env.SOURCE_DIR) {
@@ -217,7 +233,9 @@ node('builder') {
         
         if (env.CLEAN_AFER == 'true') {
             cleanUp()
-        }
+	} else {
+	    basicCleanUp()
+	}
         
         currentBuild.result = 'SUCCESS'
         slackSend (color: 'good', message: "Jenkins Builder - Job SUCCESS: '${env.JOB_NAME} [${env.BUILD_NUMBER} - ${currentBuild.description}]' (${env.BUILD_URL})")

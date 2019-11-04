@@ -8,10 +8,9 @@
     
     
     
-    
-    
-    
-    
+    <!-- GPS -->
+    <remove-project name="android_hardware_qcom_gps" />
+    <project name="lakgarg/hardware_qcom_gps" path="hardware/qcom/gps" remote="github" revision="ten" />
     
     <project name="device_lge_bullhead" path="device/lge/bullhead" remote="pixel-devices" revision="ten" />
     <project name="lakgarg/flipflop-1" path="kernel/lge/bullhead" remote="github" revision="flipflop" />

@@ -1,3 +1,17 @@
+void resetSourceTree() {
+  echo 'Reseting source tree...'
+  dir(env.SOURCE_DIR) {
+	def rc = sh (returnStatus: true, script: '''#!/usr/bin/env bash		    
+				if [ -d ".repo" ]
+				then		    
+                		  repo diff > repo.${BUILD_NUMBER}.diff
+				fi
+                	''')	  
+    sh '''#!/usr/bin/env bash
+    repo forall -c "git reset --hard"'''
+  }
+}
+
 int cleanUp() {
   echo 'Cleaning up environment...'
   dir(env.SOURCE_DIR) {
@@ -76,6 +90,11 @@ node('builder') {
             if (env.CLEAN_BEFORE == 'true') {
                 cleanUp()
             }
+		
+            if (env.RESET_SOURCE_TREE == 'true') {
+                resetSourceTree()
+            }
+		
         }
         
         stage('Code syncing') {

@@ -13,7 +13,7 @@
     <project name="lakgarg/hardware_qcom_gps" path="hardware/qcom/gps" remote="github" revision="ten" />
     
     <!-- DISPLAY -->
-    <remove-project name="hardware_qcom_display" />
+    <remove-project name="android_hardware_qcom_display" />
     <project name="lakgarg/hardware_qcom_display" path="hardware/qcom/display" remote="github" revision="ten" />    
     
     <project name="device_lge_bullhead" path="device/lge/bullhead" remote="pixel-devices" revision="ten" />

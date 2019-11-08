@@ -26,18 +26,20 @@ int cleanUp() {
 }
 
 int basicCleanUp() {
-  echo 'Minimal cleaning up environment...'
-  dir(env.SOURCE_DIR) {
-        def rc = sh (returnStatus: true, script: '''#!/usr/bin/env bash
-                cd out
-                rm -f $(find . -name "*.log.*.gz")
-                rm -f $(find . -name "soong*.log")
-                rm -f $(find . -name "error*.log")
-                rm -f $(find . -name "build*.trace*.gz")
-                rm -f $(find . -name "PixelExperience*")
-                rm -rf target/		
-        ''')
-  }
+	if (env.BASIC_CLEANUP == 'true') {
+  		echo 'Minimal cleaning up environment...'
+  		dir(env.SOURCE_DIR) {
+        	def rc = sh (returnStatus: true, script: '''#!/usr/bin/env bash
+                	cd out
+                	rm -f $(find . -name "*.log.*.gz")
+                	rm -f $(find . -name "soong*.log")
+                	rm -f $(find . -name "error*.log")
+                	rm -f $(find . -name "build*.trace*.gz")
+                	rm -f $(find . -name "PixelExperience*")
+                	rm -rf target/		
+        	''')
+  		}
+	}
 }
 
 

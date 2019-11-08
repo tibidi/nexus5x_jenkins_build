@@ -227,7 +227,7 @@ node('builder') {
             echo 'Archiving ...'
             dir(env.ARCHIVE_DIR) {
 		if (env.SYNC == 'true' ) {
-		     sh "cp ../diff/repo.${BUILD_NUMBER}.diff repo.diff"
+		     sh "cp ../../diff/repo.${BUILD_NUMBER}.diff repo.diff"
 		}
                 archiveArtifacts allowEmptyArchive: true, artifacts: '**', excludes: '*target*', fingerprint: true, onlyIfSuccessful: true
             }

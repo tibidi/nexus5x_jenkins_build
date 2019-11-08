@@ -21,6 +21,8 @@ int cleanUp() {
                 lunch aosp_bullhead-$BUILD_TYPE
                 make clean
                 make clobber
+		rm -rf ./out
+		mkdir -p ./out
         ''')
   }
 }

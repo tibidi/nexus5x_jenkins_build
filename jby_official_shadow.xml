@@ -13,6 +13,6 @@
     <!-- LGE Kernel/Device/Vendor (don't like pixel auto add)-->
     <project name="PixelExperience-Devices/device_lge_bullhead" path="device/lge/bullhead" remote="github" revision="pie" />
     <project name="tibidi/proprietary_vendor_lge" path="vendor/lge" remote="github" revision="p9.0" />
-    <project name="tibidi/kernel_lge_jby" path="kernel/jby/bullhead" remote="github" revision="master" />
+    <project name="tibidi/kernel_lge_jby" path="kernel/lge/bullhead" remote="github" revision="master" />
     
 </manifest>

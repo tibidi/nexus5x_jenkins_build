@@ -1,3 +1,8 @@
+void signPackage () {
+ //./build/make/tools/releasetools/sign_target_files_apks -o --default_key_mappings vendor/secure/ out/target/product/bullhead/obj/PACKAGING/target_files_intermediates/aosp_bullhead-target_files-eng.root.zip signed-target_files.zip
+ //./build/make/tools/releasetools/ota_from_target_files signed-target_files.zip signed-ota_update.zip
+
+}
 void resetSourceTree() {
   echo 'Reseting source tree...'
   dir(env.SOURCE_DIR) {

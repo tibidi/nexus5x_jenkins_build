@@ -14,8 +14,8 @@
     
     
     <!-- DISPLAY -->
-    <remove-project name="android_hardware_qcom_display" />
-    <project name="lakgarg/hardware_qcom_display" path="hardware/qcom/display" remote="github" revision="ten" />    
+    <!-- remove-project name="android_hardware_qcom_display" />
+    <project name="lakgarg/hardware_qcom_display" path="hardware/qcom/display" remote="github" revision="ten" /-->    
     
     <!-- NEXUS 5X -->
     <project name="device_lge_bullhead" path="device/lge/bullhead" remote="pixel-devices" revision="ten" />

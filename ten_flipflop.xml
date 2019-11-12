@@ -10,8 +10,10 @@
     
     <!-- GPS -->
     <remove-project name="android_hardware_qcom_gps" />
-    <project name="lakgarg/hardware_qcom_gps" path="hardware/qcom/gps" remote="github" revision="ten" />
+    <!--project name="lakgarg/hardware_qcom_gps" path="hardware/qcom/gps" remote="github" revision="ten" /-->
+    <project name="lakgarg/android_hardware_qcom_gps" path="hardware/qcom/gps" remote="github" revision="ten" />
     
+   <!-- -->    
     
     <!-- DISPLAY -->
     <!-- remove-project name="android_hardware_qcom_display" />

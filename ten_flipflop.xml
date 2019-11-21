@@ -14,8 +14,8 @@
     <project name="lakgarg/android_hardware_qcom_gps" path="hardware/qcom/gps" remote="github" revision="lineage-17.0" />
     
     <!-- BT -->    
-    <remove-project name="android_hardware_qcom_bt" />
-    <project name="lakgarg/android_hardware_qcom_bt" path="hardware/qcom/bt" remote="github" revision="lineage-17.0" />
+    <!-- remove-project name="android_hardware_qcom_bt" />
+    <project name="lakgarg/android_hardware_qcom_bt" path="hardware/qcom/bt" remote="github" revision="lineage-17.0" /-->
     
     
     

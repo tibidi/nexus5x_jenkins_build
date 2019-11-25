@@ -3,6 +3,11 @@ void signPackage () {
  //./build/make/tools/releasetools/ota_from_target_files signed-target_files.zip signed-ota_update.zip
 
 }
+
+void sendSms (String message) {
+  	sh "/opt/jenkins/misc/sendSms.sh \"$message\""
+}
+
 void resetSourceTree() {
   echo 'Reseting source tree...'
   dir(env.SOURCE_DIR) {
@@ -65,6 +70,7 @@ node('builder') {
     
         stage('Preparation') {
             echo 'Setting up environment...'
+	    sendSms ("OK")
             env.DEVICE='bullhead'		
             if ( ! env.ANDROID_VER ) {		
                 env.ANDROID_VER='pie'

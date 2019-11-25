@@ -70,7 +70,6 @@ node('builder') {
     
         stage('Preparation') {
             echo 'Setting up environment...'
-	    sendSms ("OK")
             env.DEVICE='bullhead'		
             if ( ! env.ANDROID_VER ) {		
                 env.ANDROID_VER='pie'

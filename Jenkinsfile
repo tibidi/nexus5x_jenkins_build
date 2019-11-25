@@ -273,11 +273,12 @@ node('builder') {
 	}
         
         currentBuild.result = 'SUCCESS'
-        slackSend (color: 'good', message: "<@W4UFQRR8B> Jenkins Builder - Job SUCCESS: '${env.JOB_NAME} [${env.BUILD_NUMBER} - ${currentBuild.description}]' (${env.BUILD_URL})")
+        slackSend (color: 'good', message: "${env.SLACK_NAME} Jenkins Builder - Job SUCCESS: '${env.JOB_NAME} [${env.BUILD_NUMBER} - ${currentBuild.description}]' (${env.BUILD_URL})")
+        sendSms ("Jenkins Builder - Job SUCCESS :-) : '${env.JOB_NAME} [${env.BUILD_NUMBER} - ${currentBuild.description}]' (${env.BUILD_URL})")
         
     } catch (Exception e) {
         currentBuild.result = 'FAILURE'
-        slackSend (color: 'danger', message: "<@W4UFQRR8B> Jenkins Builder - Job FAILED: '${env.JOB_NAME} [${env.BUILD_NUMBER} - ${currentBuild.description}]' (${env.BUILD_URL})")
+        sendSms ("Jenkins Builder - Job Failed :-( : '${env.JOB_NAME} [${env.BUILD_NUMBER} - ${currentBuild.description}]' (${env.BUILD_URL})")
     }
     if (! env.CLEAN_OUT || env.CLEAN_OUT == 'true' ) {
     	cleanUpBuildOutput()

@@ -69,7 +69,7 @@ node('builder') {
     try {
     
         stage('Preparation') {
-            echo 'Setting up environment... for ' + env.OK
+            echo 'Setting up environment... '
             env.DEVICE='bullhead'		
             if ( ! env.ANDROID_VER ) {		
                 env.ANDROID_VER='pie'

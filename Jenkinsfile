@@ -273,12 +273,12 @@ node('builder') {
         
         currentBuild.result = 'SUCCESS'
         //sendSms ("Fabrication OK : '${env.JOB_NAME} [${env.BUILD_NUMBER} - ${currentBuild.description} ${env.AGENT_HOST}]'")	    
-        sendSms ("Fabrication OK : '${env.JOB_NAME} [${env.BUILD_NUMBER} - ${currentBuild.description} ${env.AGENT_HOST}] ${env.PRIV_URL}/job/${env.JOB_NAME}/${env.BUILD_NUMBER}'")
+        sendSms ("Fabrication Build OK : ${env.JOB_NAME} [${env.BUILD_NUMBER} - ${currentBuild.description} ${env.AGENT_HOST}] ${env.PRIV_URL}/job/${env.JOB_NAME}/${env.BUILD_NUMBER}")
 	slackSend (color: 'good', message: "${env.SLACK_NAME} Jenkins Builder - Job SUCCESS: '${env.JOB_NAME} [${env.BUILD_NUMBER} - ${currentBuild.description}]' (${env.BUILD_URL})")        
     } catch (Exception e) {
         currentBuild.result = 'FAILURE'
         //sendSms ("Fabrication KO : '${env.JOB_NAME} [${env.BUILD_NUMBER} - ${currentBuild.description} ${env.AGENT_HOST}]'")	    
-        sendSms ("Fabrication KO : '${env.JOB_NAME} [${env.BUILD_NUMBER} - ${currentBuild.description} ${env.AGENT_HOST}] ${env.PRIV_URL}/job/${env.JOB_NAME}/${env.BUILD_NUMBER}'")
+        sendSms ("Fabrication Build KO : ${env.JOB_NAME} [${env.BUILD_NUMBER} - ${currentBuild.description} ${env.AGENT_HOST}] ${env.PRIV_URL}/job/${env.JOB_NAME}/${env.BUILD_NUMBER}")
         slackSend (color: 'danger', message: "${env.SLACK_NAME} Jenkins Builder - Job FAILED: '${env.JOB_NAME} [${env.BUILD_NUMBER} - ${currentBuild.description}]' (${env.BUILD_URL})")	    	    
     }
     if (! env.CLEAN_OUT || env.CLEAN_OUT == 'true' ) {

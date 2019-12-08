@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+    
+    <!--remove-project name="hardware_qcom_audio" /-->
+    
+    <!--Use Bliss Audio-->
+    <!--project name="tibidi/platform_hardware_qcom_audio"  path="hardware/qcom/audio/default" remote="github" revision="p9.0"/-->
+    
+    <!-- GPS -->
+    <remove-project name="hardware_qcom_gps" />
+    <!--project name="lakgarg/hardware_qcom_gps" path="hardware/qcom/gps" remote="github" revision="ten" /-->
+    <project name="lakgarg/android_hardware_qcom_gps" path="hardware/qcom/gps" remote="github" revision="lineage-17.0" />
+    
+    <!-- BT -->    
+    <!-- remove-project name="android_hardware_qcom_bt" />
+    <project name="lakgarg/android_hardware_qcom_bt" path="hardware/qcom/bt" remote="github" revision="lineage-17.0" /-->
+    
+    <!-- DISPLAY -->
+    <remove-project name="hardware_qcom_display" />
+    <project name="Sirhc95/hardware_qcom_display" path="hardware/qcom/display" remote="github" revision="quartz-aosp" />    
+    
+    <!-- NEXUS 5X -->
+    <project name="JenniferAaronsson/device_lge_bullhead" path="device/lge/bullhead" remote="github" revision="ten" />
+    <project name="JenniferAaronsson/bullhead" path="kernel/lge/bullhead" remote="github" revision="ten" />
+    <project name="JenniferAaronsson/proprietary_vendor_lge" path="vendor/lge" remote="github" revision="10" />
+    
+    <project name="francois133/gcc_10_toolchain" path="prebuilts/gcc_toolchain_10" remote="gitlab" revision="master" />
+
+</manifest>
+
+
+
+
+

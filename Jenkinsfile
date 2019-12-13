@@ -186,6 +186,7 @@ node('builder') {
 
                 mv out/target/product/bullhead/PixelExperience_*bullhead-*zip $ARCHIVE_DIR
                 cp out/target/product/bullhead/obj/PACKAGING/target_files_intermediates/aosp_bullhead-target_files-eng.root/SYSTEM/build.prop $ARCHIVE_DIR
+		cp out/target/product/bullhead/system/build.prop $ARCHIVE_DIR
         
                 cp out/target/product/bullhead/system/etc/Changelog.txt $ARCHIVE_DIR
         

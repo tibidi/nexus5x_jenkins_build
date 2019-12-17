@@ -109,6 +109,11 @@ node('builder') {
                 resetSourceTree()
             }
 		
+            if ( env.CLEAN_OUT_BEFORE && env.CLEAN_OUT_BEFORE == 'true' ) {
+		    echo 'Clean out folder ...'
+                    cleanUpBuildOutput()
+            }		
+		
         }
         
         stage('Code syncing') {

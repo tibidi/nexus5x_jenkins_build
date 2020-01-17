@@ -4,10 +4,10 @@
     <remove-project name="android_hardware_qcom_audio" />
 
     <!-- Use Bliss Audio -->
-    <!-- project name="tibidi/platform_hardware_qcom_audio"  path="hardware/qcom/audio/default" remote="github" revision="p9.0"/-->
+    <project name="tibidi/platform_hardware_qcom_audio"  path="hardware/qcom/audio/default" remote="github" revision="p9.0"/>
    
     <!-- Use My Work Around Audio -->
-    <project name="tibidi/android_hardware_qcom_audio"  path="hardware/qcom/audio/default" remote="github" revision="lineage-16.0"/>
+    <!-- project name="tibidi/android_hardware_qcom_audio"  path="hardware/qcom/audio/default" remote="github" revision="lineage-16.0"/-->
     
     <!-- Add AOSP Context Hub-->
     <remove-project name="device/google/contexthub" />

@@ -25,6 +25,8 @@
     
     <project name="lakgarg/proprietary_vendor_lge" path="vendor/lge" remote="github" revision="10" />
     
+    <project name="lakgarg/packages_apps_GoogleCamera_bullhead" path="packages/apps/GoogleCamera" remote="github" revision="master" />
+    
     <!--project name="francois133/gcc_10_toolchain" path="prebuilts/gcc_toolchain_10" remote="gitlab" revision="master" /-->
     
     <project name="arter97/arm64-gcc" path="prebuilts/arm64-gcc" remote="github" revision="master" />

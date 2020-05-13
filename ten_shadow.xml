@@ -21,7 +21,9 @@
     <!-- NEXUS 5X -->
     <project name="device_lge_bullhead" path="device/lge/bullhead" remote="pixel-devices" revision="ten" />
     
-    <project name="lakgarg/bullhead" path="kernel/lge/bullhead" remote="github" revision="master" />
+    <!--project name="lakgarg/bullhead" path="kernel/lge/bullhead" remote="github" revision="master" /-->
+    
+    <project name="svlog/kernel_lge_bullhead" path="kernel/lge/bullhead" remote="github" revision="stable" />
     
     <project name="lakgarg/proprietary_vendor_lge" path="vendor/lge" remote="github" revision="10" />
     

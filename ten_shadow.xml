@@ -32,6 +32,8 @@
     <!--project name="francois133/gcc_10_toolchain" path="prebuilts/gcc_toolchain_10" remote="gitlab" revision="master" /-->
     
     <project name="arter97/arm64-gcc" path="prebuilts/arm64-gcc" remote="github" revision="master" />
+    
+    <project name="LineageOS/android_hardware_sony_timekeep" path="hardware/sony/timekeep" remote="github" revision="lineage-17.1" />
 
 </manifest>
 

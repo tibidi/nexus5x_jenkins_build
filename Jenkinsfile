@@ -130,7 +130,7 @@ node('builder') {
 
                 checkout poll: false, changelog: true, scm: [$class: 'RepoScm', currentBranch: true, destinationDir: env.SOURCE_DIR, forceSync: true, jobs: env.JOBS, manifestBranch: env.BRANCH,
                     manifestRepositoryUrl: env.MANIFEST, noTags: true, quiet: true
-		    //,localManifest: env.NEXUS_MANIFEST
+		    ,localManifest: env.NEXUS_MANIFEST
                 ]
             }
           }

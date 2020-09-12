@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-      <remote name="pixel-devices-bitbucket"
+      <!--remote name="pixel-devices-bitbucket"
           fetch="https://bitbucket.org/PixelExperience-Devices"
-          revision="ten" />
+          revision="ten" /-->
 
     <project name="device_lge_bullhead" path="device/lge/bullhead" remote="pixel-devices" revision="ten" />
     
     <project name="PixelExperience-Devices/kernel_lge_bullhead" path="kernel/lge/bullhead" remote="github" revision="ten" />
     
     <!--project name="PixelExperience-Devices/vendor_lge" path="vendor/lge" remote="github" revision="ten" /-->
-    <project name="vendor_lge_bullhead" path="vendor/lge/bullhead" remote="pixel-devices-bitbucket" revision="ten" />
+    <project name="vendor_lge_bullhead" path="vendor/lge/bullhead" remote="pixel-devices-blobs" revision="ten" />
     
     <project name="lakgarg/packages_apps_GoogleCamera_bullhead" path="packages/apps/GoogleCamera" remote="github" revision="master" />
     

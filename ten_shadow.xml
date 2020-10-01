@@ -14,6 +14,10 @@
     <project name="lakgarg/packages_apps_GoogleCamera_bullhead" path="packages/apps/GoogleCamera" remote="github" revision="master" />
     
     <project name="LineageOS/android_hardware_sony_timekeep" path="hardware/sony/timekeep" remote="github" revision="lineage-17.1" />
+    
+    <project name="mortezadadgar/bullhead" path="kernel/lge/bullheadshadow" remote="github" revision="master" />
+      
+      
 
     <!--project name="arter97/arm64-gcc" path="prebuilts/arm64-gcc" remote="github" revision="master" /-->
     

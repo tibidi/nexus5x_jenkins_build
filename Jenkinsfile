@@ -260,7 +260,7 @@ node('builder') {
                       //cp boot.build.img boot.build.$BUILD_DATE.img  
                       //drive add_remote --file boot.build.$BUILD_DATE.img --pid 10Cu1qT__R4BrmBaEGvdtVD0m2dgXM56o
                       drive add_remote --file PixelExperience_*bullhead-*.zip --pid 10Cu1qT__R4BrmBaEGvdtVD0m2dgXM56o
-                      //drive add_remote --file kernel_$BUILD_DATE.tgz --pid 10Cu1qT__R4BrmBaEGvdtVD0m2dgXM56o  
+                      drive add_remote --file kernel_$BUILD_DATE.tgz --pid 10Cu1qT__R4BrmBaEGvdtVD0m2dgXM56o  
                       //drive add_remote --file contexthub_$BUILD_DATE.tgz --pid 10Cu1qT__R4BrmBaEGvdtVD0m2dgXM56o    
                       //drive add_remote --file device_$BUILD_DATE.tgz  --pid 10Cu1qT__R4BrmBaEGvdtVD0m2dgXM56o
                       //drive add_remote --file vendor_$BUILD_DATE.tgz --pid 10Cu1qT__R4BrmBaEGvdtVD0m2dgXM56o  

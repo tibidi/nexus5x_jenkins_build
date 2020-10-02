@@ -258,6 +258,7 @@ node('builder') {
                       export TARGET_KERNEL_CONFIG=$(echo $NEXUS_MANIFEST | sed "s/.*_//" | sed "s/.xml//")
                       #export folderId=$(drive folder -t ${AGENT_HOST}_${BRANCH}_${TARGET_KERNEL_CONFIG}_${BUILD_DATE} --parent $DRIVE_FOLDER | grep Id | sed "s/.* //")
                       #cp boot.build.img boot.build.$BUILD_DATE.img  
+                      drive login
                       #drive add_remote --file boot.build.$BUILD_DATE.img --pid 10Cu1qT__R4BrmBaEGvdtVD0m2dgXM56o
                       drive add_remote --file PixelExperience_*bullhead-*.zip --pid 10Cu1qT__R4BrmBaEGvdtVD0m2dgXM56o
                       drive add_remote --file kernel_$BUILD_DATE.tgz --pid 10Cu1qT__R4BrmBaEGvdtVD0m2dgXM56o  

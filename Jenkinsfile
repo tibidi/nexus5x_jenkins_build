@@ -225,15 +225,17 @@ node('builder') {
                   def rc = sh (returnStatus: true, script: '''#!/usr/bin/env bash
                     export BUILD_DATE=$(grep "org.pixelexperience.build_date=" $ARCHIVE_DIR/build.prop | sed "s/.*=//")                  
                     tar czf $ARCHIVE_DIR/kernel_$BUILD_DATE.tgz $TARGET_KERNEL_FOLDER
-                    tar czf $ARCHIVE_DIR/contexthub_$BUILD_DATE.tgz device/google/contexthub
-            tar czf $ARCHIVE_DIR/device_$BUILD_DATE.tgz device/lge/bullhead
-            tar czf $ARCHIVE_DIR/vendor_$BUILD_DATE.tgz vendor/lge
-            if [ -d "hardware/qcom/audio/default" ]
-            then
-              tar czf $ARCHIVE_DIR/audio_$BUILD_DATE.tgz hardware/qcom/audio/default
-            else
-              tar czf $ARCHIVE_DIR/audio_$BUILD_DATE.tgz hardware/qcom/audio
-            fi
+                    #tar czf $ARCHIVE_DIR/contexthub_$BUILD_DATE.tgz device/google/contexthub
+                    tar czf $ARCHIVE_DIR/device_$BUILD_DATE.tgz device/lge/bullhead
+                    tar czf $ARCHIVE_DIR/vendor_$BUILD_DATE.tgz vendor/lge
+                    tar czf $ARCHIVE_DIR/camera_$BUILD_DATE.tgz packages/apps/GoogleCamera
+                    tar czf $ARCHIVE_DIR/timekeep_$BUILD_DATE.tgz hardware/sony/timekeep
+                    #if [ -d "hardware/qcom/audio/default" ]
+                    #then
+                    #  tar czf $ARCHIVE_DIR/audio_$BUILD_DATE.tgz hardware/qcom/audio/default
+                    #else
+                    #  tar czf $ARCHIVE_DIR/audio_$BUILD_DATE.tgz hardware/qcom/audio
+                    #fi
                   ''')                
                 }                
             }
@@ -269,9 +271,13 @@ node('builder') {
                       #drive add_remote --file repo.diff --pid 10Cu1qT__R4BrmBaEGvdtVD0m2dgXM56o
                       rm -rf $ARCHIVE_DIR/.gd
                       ln -sf  /root/gdrive/.gd $ARCHIVE_DIR
-                      drive push -destination nexus/ten/$BUILD_DATE -no-prompt PixelExperience_*bullhead-*.zip
                       drive push -destination nexus/ten/$BUILD_DATE -no-prompt repo.diff
                       drive push -destination nexus/ten/$BUILD_DATE -no-prompt kernel_$BUILD_DATE.tgz
+                      drive push -destination nexus/ten/$BUILD_DATE -no-prompt device_$BUILD_DATE.tgz
+                      drive push -destination nexus/ten/$BUILD_DATE -no-prompt vendor_$BUILD_DATE.tgz
+                      drive push -destination nexus/ten/$BUILD_DATE -no-prompt camera_$BUILD_DATE.tgz
+                      drive push -destination nexus/ten/$BUILD_DATE -no-prompt timekeep_$BUILD_DATE.tgz
+                      drive push -destination nexus/ten/$BUILD_DATE -no-prompt PixelExperience_*bullhead-*.zip                      
                 ''')
               }
             }            

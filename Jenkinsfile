@@ -246,6 +246,7 @@ node('builder') {
             dir(env.ARCHIVE_DIR) {
         if (env.SYNC == 'true' ) {
              sh "cp ../../diff/repo.${BUILD_NUMBER}.diff repo.diff"
+             sh "rm -rf .gd"
         }
                 archiveArtifacts allowEmptyArchive: true, artifacts: '**', excludes: '*target*', fingerprint: true, onlyIfSuccessful: true
             }

@@ -1,11 +1,10 @@
 void signPackage () {
- //./build/make/tools/releasetools/sign_target_files_apks -o --default_key_mappings vendor/secure/ out/target/product/bullhead/obj/PACKAGING/target_files_intermediates/aosp_bullhead-target_files-eng.root.zip signed-target_files.zip
- //./build/make/tools/releasetools/ota_from_target_files signed-target_files.zip signed-ota_update.zip
-
+  //./build/make/tools/releasetools/sign_target_files_apks -o --default_key_mappings vendor/secure/ out/target/product/bullhead/obj/PACKAGING/target_files_intermediates/aosp_bullhead-target_files-eng.root.zip signed-target_files.zip
+  //./build/make/tools/releasetools/ota_from_target_files signed-target_files.zip signed-ota_update.zip
 }
 
 void sendSms (String message) {
-      sh "/opt/jenkins/misc/sendSms.sh \"$message\""
+  sh "/opt/jenkins/misc/sendSms.sh \"$message\""
 }
 
 void resetSourceTree() {
@@ -73,7 +72,7 @@ node('builder') {
             env.DEVICE='bullhead'        
             if ( ! env.ANDROID_VER ) {        
                 env.ANDROID_VER='pie'
-        }
+            }
             if ( ! env.WORKDIR ) {
                 env.WORKDIR= env.WORKSPACE + '/build/'
             }
@@ -110,8 +109,8 @@ node('builder') {
             }
         
             if ( env.CLEAN_OUT_BEFORE && env.CLEAN_OUT_BEFORE == 'true' ) {
-            echo 'Clean out folder ...'
-                    cleanUpBuildOutput()
+                echo 'Clean out folder ...'
+                cleanUpBuildOutput()
             }        
         
         }
@@ -125,12 +124,11 @@ node('builder') {
                   mkdir -p ../diff
                           repo diff > ../diff/repo.${BUILD_NUMBER}.diff
                 fi
-                         rm -f .repo/local_manifests/*                
-                    ''')
-
-                checkout poll: false, changelog: true, scm: [$class: 'RepoScm', currentBranch: true, destinationDir: env.SOURCE_DIR, forceSync: true, jobs: env.JOBS, manifestBranch: env.BRANCH,
+                rm -f .repo/local_manifests/*                
+              ''')
+              checkout poll: false, changelog: true, scm: [$class: 'RepoScm', currentBranch: true, destinationDir: env.SOURCE_DIR, forceSync: true, jobs: env.JOBS, manifestBranch: env.BRANCH,
                     manifestRepositoryUrl: env.MANIFEST, noTags: true, quiet: true
-            ,localManifest: env.NEXUS_MANIFEST
+                    ,localManifest: env.NEXUS_MANIFEST
                 ]
             }
           }
@@ -210,6 +208,7 @@ node('builder') {
             echo 'Pakaging ...'
             dir(env.SOURCE_DIR) {
                 if (env.PATCH_BOOT_4C == 'true') {
+                  // Only for pie
                   def rc = sh (returnStatus: true, script: '''#!/usr/bin/env bash
                     cd $ARCHIVE_DIR
                     unzip PixelExperience_*bullhead-* boot.img
@@ -221,7 +220,7 @@ node('builder') {
                     cd ..
                   ''')
                 }
-        if (env.SYNC == 'true' ) {
+                if (env.SYNC == 'true' ) {
                   def rc = sh (returnStatus: true, script: '''#!/usr/bin/env bash
                     export BUILD_DATE=$(grep "org.pixelexperience.build_date=" $ARCHIVE_DIR/build.prop | sed "s/.*=//")                  
                     tar czf $ARCHIVE_DIR/kernel_$BUILD_DATE.tgz $TARGET_KERNEL_FOLDER

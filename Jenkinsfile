@@ -146,7 +146,7 @@ node('builder') {
             dir(env.SOURCE_DIR) {
                 def rc = sh (returnStatus: true, script: '''#!/usr/bin/env bash
         
-        export TARGET_KERNEL_CONFIG=$(echo $NEXUS_MANIFEST | sed "s/.*_//" | sed "s/.xml/_defconfig/")
+                export TARGET_KERNEL_CONFIG=$(echo $NEXUS_MANIFEST | sed "s/.*_//" | sed "s/.xml/_defconfig/")
 
                 rm -rf ./out/target/product/bullhead/obj/PACKAGING/target_files_intermediates/*
                 rm -f ./out/target/product/bullhead/PixelExperience_*bullhead-*.zip
@@ -157,12 +157,12 @@ node('builder') {
                 mkdir -p $ARCHIVE_DIR
                 rm -rf $ARCHIVE_DIR/*
 
-        if [ -f prebuilts/misc/linux-x86/ccache/ccache ]
-        then        
+                if [ -f prebuilts/misc/linux-x86/ccache/ccache ]
+                then        
                    prebuilts/misc/linux-x86/ccache/ccache -M $CCACHE_CUSTOM_SIZE
-        else
-           ccache -M $CCACHE_CUSTOM_SIZE
-         fi
+                else
+                    ccache -M $CCACHE_CUSTOM_SIZE
+                fi
 
                 # Load build environment
                 . build/envsetup.sh
@@ -175,11 +175,11 @@ node('builder') {
                 fi
 
                 if [ ! -z "$BUILD_JOB" ] 
-        then
-          mka bacon -j$BUILD_JOB
-        else
+                then
+                  mka bacon -j$BUILD_JOB
+                else
                   mka bacon -j$JOBS
-        fi
+                fi
 
                 if [ $? -ne 0 ]
                 then
@@ -190,8 +190,8 @@ node('builder') {
                 export BUILD_NUMBER=$BUILD_NUMBER_JENKINS
 
                 mv out/target/product/bullhead/PixelExperience_*bullhead-*zip $ARCHIVE_DIR
-                cp out/target/product/bullhead/obj/PACKAGING/target_files_intermediates/aosp_bullhead-target_files-eng.root/SYSTEM/build.prop $ARCHIVE_DIR
-        cp out/target/product/bullhead/system/build.prop $ARCHIVE_DIR
+                #cp out/target/product/bullhead/obj/PACKAGING/target_files_intermediates/aosp_bullhead-target_files-eng.root/SYSTEM/build.prop $ARCHIVE_DIR
+                cp out/target/product/bullhead/system/build.prop $ARCHIVE_DIR
         
                 cp out/target/product/bullhead/system/etc/Changelog.txt $ARCHIVE_DIR
         
@@ -244,10 +244,10 @@ node('builder') {
         stage('Archiving') {
             echo 'Archiving ...'
             dir(env.ARCHIVE_DIR) {
-        if (env.SYNC == 'true' ) {
-             sh "cp ../../diff/repo.${BUILD_NUMBER}.diff repo.diff"
-             sh "rm -rf .gd"
-        }
+                sh "rm -rf .gd"
+                if (env.SYNC == 'true' ) {
+                    sh "cp ../../diff/repo.${BUILD_NUMBER}.diff repo.diff"
+                }
                 archiveArtifacts allowEmptyArchive: true, artifacts: '**', excludes: '*target*', fingerprint: true, onlyIfSuccessful: true
             }
         }
@@ -290,20 +290,20 @@ node('builder') {
         basicCleanUp()
     }
         
-        currentBuild.result = 'SUCCESS'
-        //sendSms ("Fabrication OK : '${env.JOB_NAME} [${env.BUILD_NUMBER} - ${currentBuild.description} ${env.AGENT_HOST}]'")        
-        sendSms ("Fabrication Build OK : ${env.JOB_NAME} [${env.BUILD_NUMBER} - ${currentBuild.description} ${env.AGENT_HOST}] ${env.PRIV_URL}/job/${env.JOB_NAME}/${env.BUILD_NUMBER}")
+    currentBuild.result = 'SUCCESS'
+    //sendSms ("Fabrication OK : '${env.JOB_NAME} [${env.BUILD_NUMBER} - ${currentBuild.description} ${env.AGENT_HOST}]'")        
+    sendSms ("Fabrication Build OK : ${env.JOB_NAME} [${env.BUILD_NUMBER} - ${currentBuild.description} ${env.AGENT_HOST}] ${env.PRIV_URL}/job/${env.JOB_NAME}/${env.BUILD_NUMBER}")
     if (env.SLACK_SEND == 'true')        
         slackSend (color: 'good', message: "${env.SLACK_NAME} Jenkins Builder - Job SUCCESS: '${env.JOB_NAME} [${env.BUILD_NUMBER} - ${currentBuild.description}]' (${env.BUILD_URL})")        
-    } catch (Exception e) {
+     } catch (Exception e) {
         currentBuild.result = 'FAILURE'
         //sendSms ("Fabrication KO : '${env.JOB_NAME} [${env.BUILD_NUMBER} - ${currentBuild.description} ${env.AGENT_HOST}]'")        
         sendSms ("Fabrication Build KO : ${env.JOB_NAME} [${env.BUILD_NUMBER} - ${currentBuild.description} ${env.AGENT_HOST}] ${env.PRIV_URL}/job/${env.JOB_NAME}/${env.BUILD_NUMBER}")
         if (env.SLACK_SEND == 'true')
         slackSend (color: 'danger', message: "${env.SLACK_NAME} Jenkins Builder - Job FAILED: '${env.JOB_NAME} [${env.BUILD_NUMBER} - ${currentBuild.description}]' (${env.BUILD_URL})")                
-    }
-    if (! env.CLEAN_OUT || env.CLEAN_OUT == 'true' ) {
+     }
+     if (! env.CLEAN_OUT || env.CLEAN_OUT == 'true' ) {
         cleanUpBuildOutput()
-    }    
-    echo "RESULT: ${currentBuild.result}"    
+     }    
+     echo "RESULT: ${currentBuild.result}"    
 }

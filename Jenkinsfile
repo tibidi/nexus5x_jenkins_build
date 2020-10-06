@@ -269,6 +269,7 @@ node('builder') {
                       #drive add_remote --file vendor_$BUILD_DATE.tgz --pid 10Cu1qT__R4BrmBaEGvdtVD0m2dgXM56o  
                       #drive add_remote --file audio_$BUILD_DATE.tgz --pid 10Cu1qT__R4BrmBaEGvdtVD0m2dgXM56o
                       #drive add_remote --file repo.diff --pid 10Cu1qT__R4BrmBaEGvdtVD0m2dgXM56o
+                      
                       rm -rf $ARCHIVE_DIR/.gd
                       ln -sf  /root/gdrive/.gd $ARCHIVE_DIR
                       drive push -destination nexus/ten/$BUILD_DATE -no-prompt repo.diff
@@ -277,7 +278,15 @@ node('builder') {
                       drive push -destination nexus/ten/$BUILD_DATE -no-prompt vendor_$BUILD_DATE.tgz
                       drive push -destination nexus/ten/$BUILD_DATE -no-prompt camera_$BUILD_DATE.tgz
                       drive push -destination nexus/ten/$BUILD_DATE -no-prompt timekeep_$BUILD_DATE.tgz
-                      drive push -destination nexus/ten/$BUILD_DATE -no-prompt PixelExperience_*bullhead-*.zip                      
+                      drive push -destination nexus/ten/$BUILD_DATE -no-prompt PixelExperience_*bullhead-*.zip
+                      
+                      #rclone copy kernel repo.diff remote:nexus/ten/$BUILD_DATE
+                      #rclone copy kernel kernel_$BUILD_DATE.tgz remote:nexus/ten/$BUILD_DATE
+                      #rclone copy kernel device_$BUILD_DATE.tgz remote:nexus/ten/$BUILD_DATE
+                      #rclone copy kernel vendor_$BUILD_DATE.tgz remote:nexus/ten/$BUILD_DATE
+                      #rclone copy kernel camera_$BUILD_DATE.tgz remote:nexus/ten/$BUILD_DATE
+                      #rclone copy kernel timekeep_$BUILD_DATE.tgz remote:nexus/ten/$BUILD_DATE
+                      #rclone copy kernel PixelExperience_*bullhead-*.zip remote:nexus/ten/$BUILD_DATE
                 ''')
               }
             }            

@@ -256,7 +256,7 @@ node('builder') {
             dir(env.ARCHIVE_DIR) {
               if (env.PUBLISH == 'true') {
                 def rc = sh (returnStatus: true, script: '''#!/usr/bin/env bash
-                      /ssd/android/nexus5x/build/bin/upload2drive.sh $ARCHIVE_DIR
+                      /ssd/android/nexus5x/build/bin/upload2drive.sh $ARCHIVE_DIR $GDRIVE
                 ''')
               }
             }            

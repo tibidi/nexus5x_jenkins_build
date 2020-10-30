@@ -256,37 +256,7 @@ node('builder') {
             dir(env.ARCHIVE_DIR) {
               if (env.PUBLISH == 'true') {
                 def rc = sh (returnStatus: true, script: '''#!/usr/bin/env bash
-                      export BUILD_DATE=$(grep "org.pixelexperience.build_date=" build.prop | sed "s/.*=//")
-                      export TARGET_KERNEL_CONFIG=$(echo $NEXUS_MANIFEST | sed "s/.*_//" | sed "s/.xml//")
-                      #export folderId=$(drive folder -t ${AGENT_HOST}_${BRANCH}_${TARGET_KERNEL_CONFIG}_${BUILD_DATE} --parent $DRIVE_FOLDER | grep Id | sed "s/.* //")
-                      #cp boot.build.img boot.build.$BUILD_DATE.img  
-                      #drive login
-                      #drive add_remote --file boot.build.$BUILD_DATE.img --pid 10Cu1qT__R4BrmBaEGvdtVD0m2dgXM56o
-                      #drive add_remote --file PixelExperience_*bullhead-*.zip --pid 10Cu1qT__R4BrmBaEGvdtVD0m2dgXM56o
-                      #drive add_remote --file kernel_$BUILD_DATE.tgz --pid 10Cu1qT__R4BrmBaEGvdtVD0m2dgXM56o  
-                      #drive add_remote --file contexthub_$BUILD_DATE.tgz --pid 10Cu1qT__R4BrmBaEGvdtVD0m2dgXM56o    
-                      #drive add_remote --file device_$BUILD_DATE.tgz  --pid 10Cu1qT__R4BrmBaEGvdtVD0m2dgXM56o
-                      #drive add_remote --file vendor_$BUILD_DATE.tgz --pid 10Cu1qT__R4BrmBaEGvdtVD0m2dgXM56o  
-                      #drive add_remote --file audio_$BUILD_DATE.tgz --pid 10Cu1qT__R4BrmBaEGvdtVD0m2dgXM56o
-                      #drive add_remote --file repo.diff --pid 10Cu1qT__R4BrmBaEGvdtVD0m2dgXM56o
-                      
-                      rm -rf $ARCHIVE_DIR/.gd
-                      ln -sf  /root/gdrive/.gd $ARCHIVE_DIR
-                      drive push -destination nexus/ten/$BUILD_DATE -no-prompt repo.diff
-                      drive push -destination nexus/ten/$BUILD_DATE -no-prompt kernel_$BUILD_DATE.tgz
-                      drive push -destination nexus/ten/$BUILD_DATE -no-prompt device_$BUILD_DATE.tgz
-                      drive push -destination nexus/ten/$BUILD_DATE -no-prompt vendor_$BUILD_DATE.tgz
-                      drive push -destination nexus/ten/$BUILD_DATE -no-prompt camera_$BUILD_DATE.tgz
-                      drive push -destination nexus/ten/$BUILD_DATE -no-prompt timekeep_$BUILD_DATE.tgz
-                      drive push -destination nexus/ten/$BUILD_DATE -no-prompt PixelExperience_*bullhead-*.zip
-                      
-                      #rclone copy kernel repo.diff remote:nexus/ten/$BUILD_DATE
-                      #rclone copy kernel kernel_$BUILD_DATE.tgz remote:nexus/ten/$BUILD_DATE
-                      #rclone copy kernel device_$BUILD_DATE.tgz remote:nexus/ten/$BUILD_DATE
-                      #rclone copy kernel vendor_$BUILD_DATE.tgz remote:nexus/ten/$BUILD_DATE
-                      #rclone copy kernel camera_$BUILD_DATE.tgz remote:nexus/ten/$BUILD_DATE
-                      #rclone copy kernel timekeep_$BUILD_DATE.tgz remote:nexus/ten/$BUILD_DATE
-                      #rclone copy kernel PixelExperience_*bullhead-*.zip remote:nexus/ten/$BUILD_DATE
+                      /ssd/android/nexus5x/build/bin/upload2drive.sh $ARCHIVE_DIR
                 ''')
               }
             }            

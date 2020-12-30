@@ -16,7 +16,7 @@
     <project name="lakgarg/hardware_qcom_display" path="hardware/qcom/display" remote="github" revision="eleven" />    
     
     
-    <remove-project name="android_hardware_qcom_bt" />
+    <remove-project name="platform/hardware/qcom/bt" />
     <project name="LineageOS/android_hardware_qcom_bt" path="hardware/qcom/bt" remote="github" revision="lineage-18.0" />
 </manifest>
 

@@ -22,27 +22,11 @@
     <!--project name="arter97/arm64-gcc" path="prebuilts/arm64-gcc" remote="github" revision="master" /-->
     
     <!--remove-project name="hardware_qcom_audio" /-->
-    
-    <!--Use Bliss Audio-->
-    <!--project name="tibidi/platform_hardware_qcom_audio"  path="hardware/qcom/audio/default" remote="github" revision="p9.0"/-->
-    
-    <!-- GPS -->
-    <!--remove-project name="hardware_qcom_gps" />
-    <project name="lakgarg/android_hardware_qcom_gps" path="hardware/qcom/gps" remote="github" revision="lineage-17.0" /-->
-    
-    <!-- BT -->    
-    <!-- remove-project name="android_hardware_qcom_bt" />
-    <project name="lakgarg/android_hardware_qcom_bt" path="hardware/qcom/bt" remote="github" revision="lineage-17.0" /-->
+   
     
     <!-- DISPLAY -->
-    <remove-project name="hardware_qcom_display" >
+    <remove-project name="hardware_qcom_display">
     <project name="lakgarg/hardware_qcom_display" path="hardware/qcom/display" remote="github" revision="eleven" />    
-    
-    <!-- NEXUS 5X -->
-    
-    <!--project name="lakgarg/bullhead" path="kernel/lge/bullhead" remote="github" revision="master" /-->    
-    <!--project name="svlog/kernel_lge_bullhead" path="kernel/lge/bullhead" remote="github" revision="stable" /-->
-    <!--project name="lakgarg/proprietary_vendor_lge" path="vendor/lge" remote="github" revision="10" /-->
 
     
 </manifest>

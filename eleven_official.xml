@@ -35,8 +35,8 @@
     <project name="lakgarg/android_hardware_qcom_bt" path="hardware/qcom/bt" remote="github" revision="lineage-17.0" /-->
     
     <!-- DISPLAY -->
-    <!--remove-project name="hardware_qcom_display" />
-    <project name="Sirhc95/hardware_qcom_display" path="hardware/qcom/display" remote="github" revision="quartz-aosp" /-->    
+    <remove-project name="hardware_qcom_display" >
+    <project name="lakgarg/hardware_qcom_display" path="hardware/qcom/display" remote="github" revision="eleven" /-->    
     
     <!-- NEXUS 5X -->
     

@@ -36,7 +36,7 @@
     
     <!-- DISPLAY -->
     <remove-project name="hardware_qcom_display" >
-    <project name="lakgarg/hardware_qcom_display" path="hardware/qcom/display" remote="github" revision="eleven" /-->    
+    <project name="lakgarg/hardware_qcom_display" path="hardware/qcom/display" remote="github" revision="eleven" />    
     
     <!-- NEXUS 5X -->
     

@@ -4,8 +4,8 @@
     
     <project name="lakgarg/bullhead-11" path="device/lge/bullhead" remote="github" revision="11" />
     
-    <!--project name="lakgarg/vendor_lge_bullhead" path="vendor/lge/bullhead" remote="github" revision="11" /-->
-    <project name="vendor_lge_bullhead" path="vendor/lge/bullhead" remote="pixel-devices-blobs" revision="ten" />
+    <project name="lakgarg/vendor_lge_bullhead" path="vendor/lge/bullhead" remote="github" revision="11" />
+    <!--project name="vendor_lge_bullhead" path="vendor/lge/bullhead" remote="pixel-devices-blobs" revision="ten" /-->
     
     <!--project name="lakgarg/packages_apps_GoogleCamera_bullhead" path="packages/apps/GoogleCamera" remote="github" revision="master" /-->
     

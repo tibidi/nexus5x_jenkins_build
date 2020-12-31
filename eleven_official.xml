@@ -24,7 +24,6 @@
     <remove-project name="hardware_qcom_media" />
     <project name="PixelExperience/hardware_qcom_media" path="hardware/qcom/media" remote="github" revision="ten" /> 
     
-    PixelExperience/hardware_qcom_media/tree/ten
 </manifest>
 
 

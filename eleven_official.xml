@@ -20,6 +20,11 @@
     <remove-project name="platform/hardware/qcom/bt" />
     <!--project name="LineageOS/android_hardware_qcom_bt" path="hardware/qcom/bt" remote="github" revision="lineage-18.0" /-->
     <project name="lakgarg/android_hardware_qcom_bt" path="hardware/qcom/bt" remote="github" revision="lineage-17.0" /> 
+    
+    <remove-project name="hardware_qcom_media" />
+    <project name="PixelExperience/hardware_qcom_media" path="hardware/qcom/media" remote="github" revision="ten" /> 
+    
+    PixelExperience/hardware_qcom_media/tree/ten
 </manifest>
 
 

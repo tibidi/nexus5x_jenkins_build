@@ -19,8 +19,8 @@
     
     <!-- MEDIA -->
     <remove-project name="hardware_qcom_media" />
-    <!--project name="PixelExperience/hardware_qcom_media" path="hardware/qcom/media" remote="github" revision="ten" /--> 
-    <project name="GZOSP/hardware_qcom_media" path="hardware/qcom/media" remote="github" revision="11.0" /> 
+    <project name="PixelExperience/hardware_qcom_media" path="hardware/qcom/media" remote="github" revision="ten" /> 
+    <!--project name="GZOSP/hardware_qcom_media" path="hardware/qcom/media" remote="github" revision="11.0" /--> 
     
     
 </manifest>

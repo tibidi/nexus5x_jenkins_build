@@ -270,7 +270,7 @@ node('builder') {
         
     currentBuild.result = 'SUCCESS'
     //sendSms ("Fabrication OK : '${env.JOB_NAME} [${env.BUILD_NUMBER} - ${currentBuild.description} ${env.AGENT_HOST}]'")        
-    sendSms ("Fabrication Build OK : ${env.JOB_NAME} [${env.BUILD_NUMBER} - ${currentBuild.description} ${env.AGENT_HOST}] ${env.PRIV_URL}/job/${env.JOB_NAME}/${env.BUILD_NUMBER}")
+    sendSms ("Fabrication Build OK : ${env.JOB_NAME} [${env.BUILD_NUMBER} - ${currentBuild.description} ${env.AGENT_HOST}] ${env.PRIV_URL}/job/${env.JOB_NAME}/${env.BUILD_NUMBER}/changes")
     if (env.SLACK_SEND == 'true')        
         slackSend (color: 'good', message: "${env.SLACK_NAME} Jenkins Builder - Job SUCCESS: '${env.JOB_NAME} [${env.BUILD_NUMBER} - ${currentBuild.description}]' (${env.BUILD_URL})")        
      } catch (Exception e) {
